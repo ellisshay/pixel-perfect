@@ -9,38 +9,134 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as CalculatorsRouteImport } from './routes/calculators'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CalculatorsRealestateRouteImport } from './routes/calculators/realestate'
+import { Route as CalculatorsMortgageRouteImport } from './routes/calculators/mortgage'
+import { Route as CalculatorsInvestRouteImport } from './routes/calculators/invest'
+import { Route as CalculatorsFamilyRouteImport } from './routes/calculators/family'
+import { Route as CalculatorsCompoundRouteImport } from './routes/calculators/compound'
+import { Route as CalculatorsChildRouteImport } from './routes/calculators/child'
 
+const CalculatorsRoute = CalculatorsRouteImport.update({
+  id: '/calculators',
+  path: '/calculators',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CalculatorsRealestateRoute = CalculatorsRealestateRouteImport.update({
+  id: '/realestate',
+  path: '/realestate',
+  getParentRoute: () => CalculatorsRoute,
+} as any)
+const CalculatorsMortgageRoute = CalculatorsMortgageRouteImport.update({
+  id: '/mortgage',
+  path: '/mortgage',
+  getParentRoute: () => CalculatorsRoute,
+} as any)
+const CalculatorsInvestRoute = CalculatorsInvestRouteImport.update({
+  id: '/invest',
+  path: '/invest',
+  getParentRoute: () => CalculatorsRoute,
+} as any)
+const CalculatorsFamilyRoute = CalculatorsFamilyRouteImport.update({
+  id: '/family',
+  path: '/family',
+  getParentRoute: () => CalculatorsRoute,
+} as any)
+const CalculatorsCompoundRoute = CalculatorsCompoundRouteImport.update({
+  id: '/compound',
+  path: '/compound',
+  getParentRoute: () => CalculatorsRoute,
+} as any)
+const CalculatorsChildRoute = CalculatorsChildRouteImport.update({
+  id: '/child',
+  path: '/child',
+  getParentRoute: () => CalculatorsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/calculators': typeof CalculatorsRouteWithChildren
+  '/calculators/child': typeof CalculatorsChildRoute
+  '/calculators/compound': typeof CalculatorsCompoundRoute
+  '/calculators/family': typeof CalculatorsFamilyRoute
+  '/calculators/invest': typeof CalculatorsInvestRoute
+  '/calculators/mortgage': typeof CalculatorsMortgageRoute
+  '/calculators/realestate': typeof CalculatorsRealestateRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/calculators': typeof CalculatorsRouteWithChildren
+  '/calculators/child': typeof CalculatorsChildRoute
+  '/calculators/compound': typeof CalculatorsCompoundRoute
+  '/calculators/family': typeof CalculatorsFamilyRoute
+  '/calculators/invest': typeof CalculatorsInvestRoute
+  '/calculators/mortgage': typeof CalculatorsMortgageRoute
+  '/calculators/realestate': typeof CalculatorsRealestateRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/calculators': typeof CalculatorsRouteWithChildren
+  '/calculators/child': typeof CalculatorsChildRoute
+  '/calculators/compound': typeof CalculatorsCompoundRoute
+  '/calculators/family': typeof CalculatorsFamilyRoute
+  '/calculators/invest': typeof CalculatorsInvestRoute
+  '/calculators/mortgage': typeof CalculatorsMortgageRoute
+  '/calculators/realestate': typeof CalculatorsRealestateRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/calculators'
+    | '/calculators/child'
+    | '/calculators/compound'
+    | '/calculators/family'
+    | '/calculators/invest'
+    | '/calculators/mortgage'
+    | '/calculators/realestate'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/calculators'
+    | '/calculators/child'
+    | '/calculators/compound'
+    | '/calculators/family'
+    | '/calculators/invest'
+    | '/calculators/mortgage'
+    | '/calculators/realestate'
+  id:
+    | '__root__'
+    | '/'
+    | '/calculators'
+    | '/calculators/child'
+    | '/calculators/compound'
+    | '/calculators/family'
+    | '/calculators/invest'
+    | '/calculators/mortgage'
+    | '/calculators/realestate'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CalculatorsRoute: typeof CalculatorsRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/calculators': {
+      id: '/calculators'
+      path: '/calculators'
+      fullPath: '/calculators'
+      preLoaderRoute: typeof CalculatorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,12 +144,87 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/calculators/realestate': {
+      id: '/calculators/realestate'
+      path: '/realestate'
+      fullPath: '/calculators/realestate'
+      preLoaderRoute: typeof CalculatorsRealestateRouteImport
+      parentRoute: typeof CalculatorsRoute
+    }
+    '/calculators/mortgage': {
+      id: '/calculators/mortgage'
+      path: '/mortgage'
+      fullPath: '/calculators/mortgage'
+      preLoaderRoute: typeof CalculatorsMortgageRouteImport
+      parentRoute: typeof CalculatorsRoute
+    }
+    '/calculators/invest': {
+      id: '/calculators/invest'
+      path: '/invest'
+      fullPath: '/calculators/invest'
+      preLoaderRoute: typeof CalculatorsInvestRouteImport
+      parentRoute: typeof CalculatorsRoute
+    }
+    '/calculators/family': {
+      id: '/calculators/family'
+      path: '/family'
+      fullPath: '/calculators/family'
+      preLoaderRoute: typeof CalculatorsFamilyRouteImport
+      parentRoute: typeof CalculatorsRoute
+    }
+    '/calculators/compound': {
+      id: '/calculators/compound'
+      path: '/compound'
+      fullPath: '/calculators/compound'
+      preLoaderRoute: typeof CalculatorsCompoundRouteImport
+      parentRoute: typeof CalculatorsRoute
+    }
+    '/calculators/child': {
+      id: '/calculators/child'
+      path: '/child'
+      fullPath: '/calculators/child'
+      preLoaderRoute: typeof CalculatorsChildRouteImport
+      parentRoute: typeof CalculatorsRoute
+    }
   }
 }
 
+interface CalculatorsRouteChildren {
+  CalculatorsChildRoute: typeof CalculatorsChildRoute
+  CalculatorsCompoundRoute: typeof CalculatorsCompoundRoute
+  CalculatorsFamilyRoute: typeof CalculatorsFamilyRoute
+  CalculatorsInvestRoute: typeof CalculatorsInvestRoute
+  CalculatorsMortgageRoute: typeof CalculatorsMortgageRoute
+  CalculatorsRealestateRoute: typeof CalculatorsRealestateRoute
+}
+
+const CalculatorsRouteChildren: CalculatorsRouteChildren = {
+  CalculatorsChildRoute: CalculatorsChildRoute,
+  CalculatorsCompoundRoute: CalculatorsCompoundRoute,
+  CalculatorsFamilyRoute: CalculatorsFamilyRoute,
+  CalculatorsInvestRoute: CalculatorsInvestRoute,
+  CalculatorsMortgageRoute: CalculatorsMortgageRoute,
+  CalculatorsRealestateRoute: CalculatorsRealestateRoute,
+}
+
+const CalculatorsRouteWithChildren = CalculatorsRoute._addFileChildren(
+  CalculatorsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CalculatorsRoute: CalculatorsRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
