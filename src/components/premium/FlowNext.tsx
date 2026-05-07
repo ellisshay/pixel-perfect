@@ -20,7 +20,6 @@ export function FlowNext({ items, title = "מה רוב האנשים בודקים
           {items.map((it) => {
             const Icon = ICONS[it.kind];
             return (
-              // @ts-expect-error - generic
               <Link key={it.to} to={it.to}
                 className="group relative p-5 rounded-2xl bg-card border border-border hover:border-primary/40 hover:-translate-y-1 transition-all"
                 style={{ boxShadow: "var(--shadow-soft)" }}>

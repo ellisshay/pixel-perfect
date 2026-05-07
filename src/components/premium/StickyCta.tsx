@@ -45,7 +45,6 @@ export function StickyCta() {
         <div className="flex-1 min-w-0 text-primary-foreground text-sm font-bold truncate">
           {cta.label}
         </div>
-        {/* @ts-expect-error - generic */}
         <Link to={cta.to} className="inline-flex items-center gap-1 h-10 px-4 rounded-full text-sm font-bold text-accent-foreground hover:scale-[1.02] transition shrink-0"
           style={{ background: "var(--gradient-gold)" }}>
           המשך <ArrowLeft size={14} />
