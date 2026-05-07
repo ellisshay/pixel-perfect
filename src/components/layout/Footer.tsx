@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { DISCLAIMER } from "@/data/nav";
+import { openCookieSettings } from "@/components/legal/CookieConsent";
 
 export function Footer() {
   const cols = [
@@ -52,7 +53,16 @@ export function Footer() {
         </div>
         <div className="mt-10 pt-6 border-t border-border space-y-3">
           <p className="text-xs text-muted-foreground leading-relaxed">{DISCLAIMER}</p>
-          <p className="text-xs text-muted-foreground">© 2025 המפה הפיננסית של ישראל · כל הזכויות שמורות</p>
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <p className="text-xs text-muted-foreground">© 2025 המפה הפיננסית של ישראל · כל הזכויות שמורות</p>
+            <button
+              type="button"
+              onClick={() => openCookieSettings()}
+              className="text-xs font-bold text-primary hover:underline"
+            >
+              ניהול העדפות עוגיות
+            </button>
+          </div>
         </div>
       </div>
     </footer>
