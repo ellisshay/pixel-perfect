@@ -9,19 +9,75 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TichnunPiansiRouteImport } from './routes/tichnun-piansi'
+import { Route as TaoyotRouteImport } from './routes/taoyot'
+import { Route as StartRouteImport } from './routes/start'
 import { Route as ShukHahonRouteImport } from './routes/shuk-hahon'
+import { Route as ShkifutRouteImport } from './routes/shkifut'
+import { Route as ShitufimRouteImport } from './routes/shitufim'
+import { Route as NadlanRouteImport } from './routes/nadlan'
+import { Route as MashkantaotRouteImport } from './routes/mashkantaot'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CalculatorsRouteImport } from './routes/calculators'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TaoyotSlugRouteImport } from './routes/taoyot.$slug'
+import { Route as LegalTermsRouteImport } from './routes/legal/terms'
+import { Route as LegalPrivacyRouteImport } from './routes/legal/privacy'
+import { Route as LegalDisclosureRouteImport } from './routes/legal/disclosure'
+import { Route as LegalCookiesRouteImport } from './routes/legal/cookies'
+import { Route as LegalAccessibilityRouteImport } from './routes/legal/accessibility'
 import { Route as CalculatorsRealestateRouteImport } from './routes/calculators/realestate'
 import { Route as CalculatorsMortgageRouteImport } from './routes/calculators/mortgage'
 import { Route as CalculatorsInvestRouteImport } from './routes/calculators/invest'
 import { Route as CalculatorsFamilyRouteImport } from './routes/calculators/family'
 import { Route as CalculatorsCompoundRouteImport } from './routes/calculators/compound'
 import { Route as CalculatorsChildRouteImport } from './routes/calculators/child'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
+const TichnunPiansiRoute = TichnunPiansiRouteImport.update({
+  id: '/tichnun-piansi',
+  path: '/tichnun-piansi',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TaoyotRoute = TaoyotRouteImport.update({
+  id: '/taoyot',
+  path: '/taoyot',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StartRoute = StartRouteImport.update({
+  id: '/start',
+  path: '/start',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ShukHahonRoute = ShukHahonRouteImport.update({
   id: '/shuk-hahon',
   path: '/shuk-hahon',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShkifutRoute = ShkifutRouteImport.update({
+  id: '/shkifut',
+  path: '/shkifut',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShitufimRoute = ShitufimRouteImport.update({
+  id: '/shitufim',
+  path: '/shitufim',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NadlanRoute = NadlanRouteImport.update({
+  id: '/nadlan',
+  path: '/nadlan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MashkantaotRoute = MashkantaotRouteImport.update({
+  id: '/mashkantaot',
+  path: '/mashkantaot',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CalculatorsRoute = CalculatorsRouteImport.update({
@@ -29,9 +85,44 @@ const CalculatorsRoute = CalculatorsRouteImport.update({
   path: '/calculators',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TaoyotSlugRoute = TaoyotSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => TaoyotRoute,
+} as any)
+const LegalTermsRoute = LegalTermsRouteImport.update({
+  id: '/legal/terms',
+  path: '/legal/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalPrivacyRoute = LegalPrivacyRouteImport.update({
+  id: '/legal/privacy',
+  path: '/legal/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalDisclosureRoute = LegalDisclosureRouteImport.update({
+  id: '/legal/disclosure',
+  path: '/legal/disclosure',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalCookiesRoute = LegalCookiesRouteImport.update({
+  id: '/legal/cookies',
+  path: '/legal/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalAccessibilityRoute = LegalAccessibilityRouteImport.update({
+  id: '/legal/accessibility',
+  path: '/legal/accessibility',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CalculatorsRealestateRoute = CalculatorsRealestateRouteImport.update({
@@ -64,90 +155,261 @@ const CalculatorsChildRoute = CalculatorsChildRouteImport.update({
   path: '/child',
   getParentRoute: () => CalculatorsRoute,
 } as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => BlogRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/blog': typeof BlogRouteWithChildren
   '/calculators': typeof CalculatorsRouteWithChildren
+  '/contact': typeof ContactRoute
+  '/mashkantaot': typeof MashkantaotRoute
+  '/nadlan': typeof NadlanRoute
+  '/shitufim': typeof ShitufimRoute
+  '/shkifut': typeof ShkifutRoute
   '/shuk-hahon': typeof ShukHahonRoute
+  '/start': typeof StartRoute
+  '/taoyot': typeof TaoyotRouteWithChildren
+  '/tichnun-piansi': typeof TichnunPiansiRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/calculators/child': typeof CalculatorsChildRoute
   '/calculators/compound': typeof CalculatorsCompoundRoute
   '/calculators/family': typeof CalculatorsFamilyRoute
   '/calculators/invest': typeof CalculatorsInvestRoute
   '/calculators/mortgage': typeof CalculatorsMortgageRoute
   '/calculators/realestate': typeof CalculatorsRealestateRoute
+  '/legal/accessibility': typeof LegalAccessibilityRoute
+  '/legal/cookies': typeof LegalCookiesRoute
+  '/legal/disclosure': typeof LegalDisclosureRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/terms': typeof LegalTermsRoute
+  '/taoyot/$slug': typeof TaoyotSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/blog': typeof BlogRouteWithChildren
   '/calculators': typeof CalculatorsRouteWithChildren
+  '/contact': typeof ContactRoute
+  '/mashkantaot': typeof MashkantaotRoute
+  '/nadlan': typeof NadlanRoute
+  '/shitufim': typeof ShitufimRoute
+  '/shkifut': typeof ShkifutRoute
   '/shuk-hahon': typeof ShukHahonRoute
+  '/start': typeof StartRoute
+  '/taoyot': typeof TaoyotRouteWithChildren
+  '/tichnun-piansi': typeof TichnunPiansiRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/calculators/child': typeof CalculatorsChildRoute
   '/calculators/compound': typeof CalculatorsCompoundRoute
   '/calculators/family': typeof CalculatorsFamilyRoute
   '/calculators/invest': typeof CalculatorsInvestRoute
   '/calculators/mortgage': typeof CalculatorsMortgageRoute
   '/calculators/realestate': typeof CalculatorsRealestateRoute
+  '/legal/accessibility': typeof LegalAccessibilityRoute
+  '/legal/cookies': typeof LegalCookiesRoute
+  '/legal/disclosure': typeof LegalDisclosureRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/terms': typeof LegalTermsRoute
+  '/taoyot/$slug': typeof TaoyotSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/blog': typeof BlogRouteWithChildren
   '/calculators': typeof CalculatorsRouteWithChildren
+  '/contact': typeof ContactRoute
+  '/mashkantaot': typeof MashkantaotRoute
+  '/nadlan': typeof NadlanRoute
+  '/shitufim': typeof ShitufimRoute
+  '/shkifut': typeof ShkifutRoute
   '/shuk-hahon': typeof ShukHahonRoute
+  '/start': typeof StartRoute
+  '/taoyot': typeof TaoyotRouteWithChildren
+  '/tichnun-piansi': typeof TichnunPiansiRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/calculators/child': typeof CalculatorsChildRoute
   '/calculators/compound': typeof CalculatorsCompoundRoute
   '/calculators/family': typeof CalculatorsFamilyRoute
   '/calculators/invest': typeof CalculatorsInvestRoute
   '/calculators/mortgage': typeof CalculatorsMortgageRoute
   '/calculators/realestate': typeof CalculatorsRealestateRoute
+  '/legal/accessibility': typeof LegalAccessibilityRoute
+  '/legal/cookies': typeof LegalCookiesRoute
+  '/legal/disclosure': typeof LegalDisclosureRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/terms': typeof LegalTermsRoute
+  '/taoyot/$slug': typeof TaoyotSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/blog'
     | '/calculators'
+    | '/contact'
+    | '/mashkantaot'
+    | '/nadlan'
+    | '/shitufim'
+    | '/shkifut'
     | '/shuk-hahon'
+    | '/start'
+    | '/taoyot'
+    | '/tichnun-piansi'
+    | '/blog/$slug'
     | '/calculators/child'
     | '/calculators/compound'
     | '/calculators/family'
     | '/calculators/invest'
     | '/calculators/mortgage'
     | '/calculators/realestate'
+    | '/legal/accessibility'
+    | '/legal/cookies'
+    | '/legal/disclosure'
+    | '/legal/privacy'
+    | '/legal/terms'
+    | '/taoyot/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/blog'
     | '/calculators'
+    | '/contact'
+    | '/mashkantaot'
+    | '/nadlan'
+    | '/shitufim'
+    | '/shkifut'
     | '/shuk-hahon'
+    | '/start'
+    | '/taoyot'
+    | '/tichnun-piansi'
+    | '/blog/$slug'
     | '/calculators/child'
     | '/calculators/compound'
     | '/calculators/family'
     | '/calculators/invest'
     | '/calculators/mortgage'
     | '/calculators/realestate'
+    | '/legal/accessibility'
+    | '/legal/cookies'
+    | '/legal/disclosure'
+    | '/legal/privacy'
+    | '/legal/terms'
+    | '/taoyot/$slug'
   id:
     | '__root__'
     | '/'
+    | '/blog'
     | '/calculators'
+    | '/contact'
+    | '/mashkantaot'
+    | '/nadlan'
+    | '/shitufim'
+    | '/shkifut'
     | '/shuk-hahon'
+    | '/start'
+    | '/taoyot'
+    | '/tichnun-piansi'
+    | '/blog/$slug'
     | '/calculators/child'
     | '/calculators/compound'
     | '/calculators/family'
     | '/calculators/invest'
     | '/calculators/mortgage'
     | '/calculators/realestate'
+    | '/legal/accessibility'
+    | '/legal/cookies'
+    | '/legal/disclosure'
+    | '/legal/privacy'
+    | '/legal/terms'
+    | '/taoyot/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BlogRoute: typeof BlogRouteWithChildren
   CalculatorsRoute: typeof CalculatorsRouteWithChildren
+  ContactRoute: typeof ContactRoute
+  MashkantaotRoute: typeof MashkantaotRoute
+  NadlanRoute: typeof NadlanRoute
+  ShitufimRoute: typeof ShitufimRoute
+  ShkifutRoute: typeof ShkifutRoute
   ShukHahonRoute: typeof ShukHahonRoute
+  StartRoute: typeof StartRoute
+  TaoyotRoute: typeof TaoyotRouteWithChildren
+  TichnunPiansiRoute: typeof TichnunPiansiRoute
+  LegalAccessibilityRoute: typeof LegalAccessibilityRoute
+  LegalCookiesRoute: typeof LegalCookiesRoute
+  LegalDisclosureRoute: typeof LegalDisclosureRoute
+  LegalPrivacyRoute: typeof LegalPrivacyRoute
+  LegalTermsRoute: typeof LegalTermsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/tichnun-piansi': {
+      id: '/tichnun-piansi'
+      path: '/tichnun-piansi'
+      fullPath: '/tichnun-piansi'
+      preLoaderRoute: typeof TichnunPiansiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/taoyot': {
+      id: '/taoyot'
+      path: '/taoyot'
+      fullPath: '/taoyot'
+      preLoaderRoute: typeof TaoyotRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/start': {
+      id: '/start'
+      path: '/start'
+      fullPath: '/start'
+      preLoaderRoute: typeof StartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/shuk-hahon': {
       id: '/shuk-hahon'
       path: '/shuk-hahon'
       fullPath: '/shuk-hahon'
       preLoaderRoute: typeof ShukHahonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shkifut': {
+      id: '/shkifut'
+      path: '/shkifut'
+      fullPath: '/shkifut'
+      preLoaderRoute: typeof ShkifutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shitufim': {
+      id: '/shitufim'
+      path: '/shitufim'
+      fullPath: '/shitufim'
+      preLoaderRoute: typeof ShitufimRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nadlan': {
+      id: '/nadlan'
+      path: '/nadlan'
+      fullPath: '/nadlan'
+      preLoaderRoute: typeof NadlanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mashkantaot': {
+      id: '/mashkantaot'
+      path: '/mashkantaot'
+      fullPath: '/mashkantaot'
+      preLoaderRoute: typeof MashkantaotRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/calculators': {
@@ -157,11 +419,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CalculatorsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/taoyot/$slug': {
+      id: '/taoyot/$slug'
+      path: '/$slug'
+      fullPath: '/taoyot/$slug'
+      preLoaderRoute: typeof TaoyotSlugRouteImport
+      parentRoute: typeof TaoyotRoute
+    }
+    '/legal/terms': {
+      id: '/legal/terms'
+      path: '/legal/terms'
+      fullPath: '/legal/terms'
+      preLoaderRoute: typeof LegalTermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/privacy': {
+      id: '/legal/privacy'
+      path: '/legal/privacy'
+      fullPath: '/legal/privacy'
+      preLoaderRoute: typeof LegalPrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/disclosure': {
+      id: '/legal/disclosure'
+      path: '/legal/disclosure'
+      fullPath: '/legal/disclosure'
+      preLoaderRoute: typeof LegalDisclosureRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/cookies': {
+      id: '/legal/cookies'
+      path: '/legal/cookies'
+      fullPath: '/legal/cookies'
+      preLoaderRoute: typeof LegalCookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/accessibility': {
+      id: '/legal/accessibility'
+      path: '/legal/accessibility'
+      fullPath: '/legal/accessibility'
+      preLoaderRoute: typeof LegalAccessibilityRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/calculators/realestate': {
@@ -206,8 +517,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CalculatorsChildRouteImport
       parentRoute: typeof CalculatorsRoute
     }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof BlogRoute
+    }
   }
 }
+
+interface BlogRouteChildren {
+  BlogSlugRoute: typeof BlogSlugRoute
+}
+
+const BlogRouteChildren: BlogRouteChildren = {
+  BlogSlugRoute: BlogSlugRoute,
+}
+
+const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
 interface CalculatorsRouteChildren {
   CalculatorsChildRoute: typeof CalculatorsChildRoute
@@ -231,10 +559,35 @@ const CalculatorsRouteWithChildren = CalculatorsRoute._addFileChildren(
   CalculatorsRouteChildren,
 )
 
+interface TaoyotRouteChildren {
+  TaoyotSlugRoute: typeof TaoyotSlugRoute
+}
+
+const TaoyotRouteChildren: TaoyotRouteChildren = {
+  TaoyotSlugRoute: TaoyotSlugRoute,
+}
+
+const TaoyotRouteWithChildren =
+  TaoyotRoute._addFileChildren(TaoyotRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BlogRoute: BlogRouteWithChildren,
   CalculatorsRoute: CalculatorsRouteWithChildren,
+  ContactRoute: ContactRoute,
+  MashkantaotRoute: MashkantaotRoute,
+  NadlanRoute: NadlanRoute,
+  ShitufimRoute: ShitufimRoute,
+  ShkifutRoute: ShkifutRoute,
   ShukHahonRoute: ShukHahonRoute,
+  StartRoute: StartRoute,
+  TaoyotRoute: TaoyotRouteWithChildren,
+  TichnunPiansiRoute: TichnunPiansiRoute,
+  LegalAccessibilityRoute: LegalAccessibilityRoute,
+  LegalCookiesRoute: LegalCookiesRoute,
+  LegalDisclosureRoute: LegalDisclosureRoute,
+  LegalPrivacyRoute: LegalPrivacyRoute,
+  LegalTermsRoute: LegalTermsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
