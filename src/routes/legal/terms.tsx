@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { PageHero } from "@/components/layout/PageHero";
 import { Section } from "@/components/layout/Section";
-import { LegalDoc, LegalH2, LegalH3, LegalP, LegalUL } from "@/components/legal/LegalDoc";
+import { LegalDoc, LegalH2, LegalP } from "@/components/legal/LegalDoc";
 
 export const Route = createFileRoute("/legal/terms")({
   head: () => ({ meta: [
