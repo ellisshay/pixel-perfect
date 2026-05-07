@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
+import { CookieConsent } from "@/components/legal/CookieConsent";
 
 export function PageLayout({ children }: { children: ReactNode }) {
   return (
@@ -8,6 +9,7 @@ export function PageLayout({ children }: { children: ReactNode }) {
       <Navbar />
       <main>{children}</main>
       <Footer />
+      <CookieConsent />
     </div>
   );
 }
