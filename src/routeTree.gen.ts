@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ShukHahonRouteImport } from './routes/shuk-hahon'
 import { Route as CalculatorsRouteImport } from './routes/calculators'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CalculatorsRealestateRouteImport } from './routes/calculators/realestate'
@@ -18,6 +19,11 @@ import { Route as CalculatorsFamilyRouteImport } from './routes/calculators/fami
 import { Route as CalculatorsCompoundRouteImport } from './routes/calculators/compound'
 import { Route as CalculatorsChildRouteImport } from './routes/calculators/child'
 
+const ShukHahonRoute = ShukHahonRouteImport.update({
+  id: '/shuk-hahon',
+  path: '/shuk-hahon',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CalculatorsRoute = CalculatorsRouteImport.update({
   id: '/calculators',
   path: '/calculators',
@@ -62,6 +68,7 @@ const CalculatorsChildRoute = CalculatorsChildRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/calculators': typeof CalculatorsRouteWithChildren
+  '/shuk-hahon': typeof ShukHahonRoute
   '/calculators/child': typeof CalculatorsChildRoute
   '/calculators/compound': typeof CalculatorsCompoundRoute
   '/calculators/family': typeof CalculatorsFamilyRoute
@@ -72,6 +79,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/calculators': typeof CalculatorsRouteWithChildren
+  '/shuk-hahon': typeof ShukHahonRoute
   '/calculators/child': typeof CalculatorsChildRoute
   '/calculators/compound': typeof CalculatorsCompoundRoute
   '/calculators/family': typeof CalculatorsFamilyRoute
@@ -83,6 +91,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/calculators': typeof CalculatorsRouteWithChildren
+  '/shuk-hahon': typeof ShukHahonRoute
   '/calculators/child': typeof CalculatorsChildRoute
   '/calculators/compound': typeof CalculatorsCompoundRoute
   '/calculators/family': typeof CalculatorsFamilyRoute
@@ -95,6 +104,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/calculators'
+    | '/shuk-hahon'
     | '/calculators/child'
     | '/calculators/compound'
     | '/calculators/family'
@@ -105,6 +115,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/calculators'
+    | '/shuk-hahon'
     | '/calculators/child'
     | '/calculators/compound'
     | '/calculators/family'
@@ -115,6 +126,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/calculators'
+    | '/shuk-hahon'
     | '/calculators/child'
     | '/calculators/compound'
     | '/calculators/family'
@@ -126,10 +138,18 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CalculatorsRoute: typeof CalculatorsRouteWithChildren
+  ShukHahonRoute: typeof ShukHahonRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/shuk-hahon': {
+      id: '/shuk-hahon'
+      path: '/shuk-hahon'
+      fullPath: '/shuk-hahon'
+      preLoaderRoute: typeof ShukHahonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/calculators': {
       id: '/calculators'
       path: '/calculators'
@@ -214,6 +234,7 @@ const CalculatorsRouteWithChildren = CalculatorsRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CalculatorsRoute: CalculatorsRouteWithChildren,
+  ShukHahonRoute: ShukHahonRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
