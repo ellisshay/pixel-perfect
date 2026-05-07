@@ -11,13 +11,14 @@ const schema = z.object({
   stage: z.string().max(120).optional(),
   notes: z.string().max(500).optional(),
   consent: z.literal(true, { errorMap: () => ({ message: "נדרש אישור" }) }),
+  marketing: z.boolean().optional(),
 });
 
 const areas = ["פיננסי אישי", "משכנתאות", "הלוואות", "שוק ההון", "נדל״ן בארץ", "נדל״ן בחו״ל", "עסקים"];
 const stages = ["טרם התחלתי", "אוסף מידע", "מוכן לפעולה", "בעיצומו של תהליך"];
 
 export function ReferralForm({ defaultArea }: { defaultArea?: string }) {
-  const [data, setData] = useState({ name: "", phone: "", email: "", area: defaultArea ?? "", budget: 0, stage: "", notes: "", consent: false });
+  const [data, setData] = useState({ name: "", phone: "", email: "", area: defaultArea ?? "", budget: 0, stage: "", notes: "", consent: false, marketing: false });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [sent, setSent] = useState(false);
 
@@ -66,9 +67,20 @@ export function ReferralForm({ defaultArea }: { defaultArea?: string }) {
       <Field label="הערות"><textarea className="w-full min-h-[80px] p-3 rounded-xl border border-input bg-background focus:outline-none focus:ring-2 focus:ring-ring/50" value={data.notes} onChange={(e) => setData({ ...data, notes: e.target.value })} maxLength={500} /></Field>
       <label className="sm:col-span-2 flex items-start gap-3 text-xs text-muted-foreground leading-relaxed">
         <input type="checkbox" className="mt-1 w-4 h-4 accent-primary" checked={data.consent} onChange={(e) => setData({ ...data, consent: e.target.checked })} />
-        <span>אני מאשר/ת כי הפרטים שמסרתי יועברו במידת הצורך לגורמים מקצועיים, שותפים עסקיים וספקים רלוונטיים לצורך יצירת קשר ומתן מידע נוסף, בהתאם למדיניות הפרטיות ותנאי השימוש.</span>
+        <span>
+          אני מאשר/ת כי הפרטים שמסרתי, לרבות פרטי יצירת קשר, תחום עניין ונתוני רקע, יועברו במידת הצורך לגורמים מקצועיים, ספקים, שותפים עסקיים, שותפי שיווק או נותני שירות רלוונטיים לצורך יצירת קשר, התאמה, טיפול בפנייה והצעת שירותים — בהתאם ל
+          <a href="/legal/privacy" target="_blank" rel="noreferrer" className="text-primary hover:underline">מדיניות הפרטיות</a> ול
+          <a href="/legal/terms" target="_blank" rel="noreferrer" className="text-primary hover:underline">תנאי השימוש</a>. *
+        </span>
       </label>
       {errors.consent && <span className="text-xs text-destructive sm:col-span-2 -mt-3">{errors.consent}</span>}
+      <label className="sm:col-span-2 flex items-start gap-3 text-xs text-muted-foreground leading-relaxed">
+        <input type="checkbox" className="mt-1 w-4 h-4 accent-primary" checked={data.marketing} onChange={(e) => setData({ ...data, marketing: e.target.checked })} />
+        <span>אני מאשר/ת קבלת דיוור שיווקי, עדכונים, מדריכים והצעות מהאתר ומשותפיו. ניתן להסיר הסכמה זו בכל עת.</span>
+      </label>
+      <p className="sm:col-span-2 text-[11px] text-muted-foreground leading-relaxed bg-muted/50 border border-border rounded-lg p-3">
+        <strong className="text-foreground">גילוי נאות:</strong> ייתכן שהאתר מקבל תמורה בגין הפניה זו. ההפניה אינה המלצה, אינה אישור איכות ואינה אחריות. למידע מלא — ראו <a href="/legal/disclosure" target="_blank" rel="noreferrer" className="text-primary hover:underline">גילוי נאות</a>.
+      </p>
       <button type="submit" className="sm:col-span-2 h-12 rounded-full font-bold text-primary-foreground hover:scale-[1.01] transition-all" style={{ background: "var(--gradient-hero)", boxShadow: "var(--shadow-elegant)" }}>
         שלחו פרטים להפניה
       </button>

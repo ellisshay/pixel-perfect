@@ -20,8 +20,13 @@ export function SectionHeader({ eyebrow, title, sub, center = true }: { eyebrow?
 
 export function Disclaimer({ className = "" }: { className?: string }) {
   return (
-    <p className={`text-xs text-muted-foreground bg-muted/60 border border-border rounded-xl p-4 leading-relaxed ${className}`}>
-      <strong className="text-foreground">דיסקליימר:</strong> המידע באתר הוא כללי וחינוכי בלבד ואינו מהווה ייעוץ השקעות, ייעוץ פיננסי אישי, ייעוץ מס או התחייבות לתשואה.
-    </p>
+    <div className={`text-xs text-muted-foreground bg-muted/60 border border-border rounded-xl p-4 leading-relaxed space-y-2 ${className}`}>
+      <p>
+        <strong className="text-foreground">דיסקליימר משפטי:</strong> המחשבון הוא כלי המחשה בלבד. התוצאות מבוססות על הנתונים שהוזנו ועל הנחות כלליות, אינן תחזית, אינן התחייבות, אינן המלצה ואינן תחליף לבדיקה מקצועית פרטנית.
+      </p>
+      <p>
+        האתר ובעליו אינם אחראים לטעות בחישוב, אי-דיוק, שינויי ריבית, מדד, מס, רגולציה, תשואה, תנאי שוק, עמלות, דמי ניהול או כל פרמטר שלא נלקח בחשבון. הסתמכות על התוצאות נעשית באחריות המשתמש בלבד.
+      </p>
+    </div>
   );
 }

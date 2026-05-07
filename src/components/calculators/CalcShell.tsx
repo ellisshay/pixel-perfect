@@ -1,11 +1,15 @@
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { Disclaimer } from "@/components/layout/Section";
 
 export function CalcShell({ title, desc, inputs, results, footer }: {
   title: string; desc?: string; inputs: ReactNode; results: ReactNode; footer?: ReactNode;
 }) {
+  const [ack, setAck] = useState(false);
   return (
     <div className="grid lg:grid-cols-[1.1fr_1fr] gap-6">
+      <div className="lg:col-span-2 rounded-xl border border-amber-500/30 bg-amber-500/5 px-4 py-3 text-xs leading-relaxed text-foreground/80">
+        <strong className="text-foreground">לתשומת לבך:</strong> המחשבון הוא <strong>סימולציה להמחשה בלבד</strong>. אינו ייעוץ פיננסי, אינו המלצה ואינו מבטיח תשואה או תוצאה כלכלית כלשהי. לפני כל החלטה — היוועצו באיש מקצוע מוסמך.
+      </div>
       <div className="rounded-2xl border border-border bg-card p-6 md:p-8" style={{ boxShadow: "var(--shadow-soft)" }}>
         <h2 className="text-xl font-bold">{title}</h2>
         {desc && <p className="mt-1 text-sm text-muted-foreground">{desc}</p>}
@@ -17,6 +21,14 @@ export function CalcShell({ title, desc, inputs, results, footer }: {
           <div className="text-xs font-bold tracking-widest text-accent uppercase">תוצאות הסימולציה</div>
           <div className="mt-4 space-y-4">{results}</div>
           {footer && <div className="mt-6 text-xs text-primary-foreground/70 border-t border-white/15 pt-4">{footer}</div>}
+          <button
+            type="button"
+            onClick={() => setAck(true)}
+            className={`mt-6 w-full h-10 rounded-full text-xs font-bold transition ${ack ? "bg-white/15 text-primary-foreground/70 cursor-default" : "bg-white/20 hover:bg-white/30 text-primary-foreground"}`}
+            disabled={ack}
+          >
+            {ack ? "אישרת — אלו תוצאות סימולציה בלבד ✓" : "הבנתי שהתוצאה היא סימולציה בלבד"}
+          </button>
         </div>
       </div>
       <div className="lg:col-span-2"><Disclaimer /></div>
