@@ -6,8 +6,9 @@ import { CookieConsent } from "@/components/legal/CookieConsent";
 export function PageLayout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <a href="#main-content" className="skip-link">דלג לתוכן הראשי</a>
       <Navbar />
-      <main>{children}</main>
+      <main id="main-content" tabIndex={-1}>{children}</main>
       <Footer />
       <CookieConsent />
     </div>
