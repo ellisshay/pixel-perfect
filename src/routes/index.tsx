@@ -1,8 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Section, SectionHeader, Disclaimer } from "@/components/layout/Section";
-import { GridBg } from "@/components/premium/GridBg";
-import { Ticker } from "@/components/premium/Ticker";
+import { BrightHero } from "@/components/sections/BrightHero";
 import { Counter } from "@/components/premium/Counter";
 import { WidgetsRow } from "@/components/premium/Widgets";
 import { Carousel, CarouselCard } from "@/components/premium/Carousel";
@@ -14,8 +13,10 @@ import { ArrowLeft, Calculator, TrendingUp, AlertTriangle, Building2, PiggyBank,
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
-    { title: "המפה הפיננסית של ישראל | פלטפורמת ידע, כלים ומחשבונים" },
-    { name: "description", content: "פלטפורמה פיננסית חיה: מחשבונים אינטראקטיביים, מדריכים, טעויות שעולות הון, וניווט חכם בשוק ההון, נדל״ן, משכנתאות ופנסיה." },
+    { title: "המפה הפיננסית | מתחילים לבנות חיסכון וצמיחה פיננסית" },
+    { name: "description", content: "המפה הפיננסית עוזרת לך להבין איך להתחיל לחסוך, להשקיע ולבנות צמיחה פיננסית גם מסכומים קטנים, דרך שוק ההון, נדל״ן, עסקים וכלים פיננסיים פשוטים." },
+    { property: "og:title", content: "המפה הפיננסית | מתחילים לבנות חיסכון וצמיחה פיננסית" },
+    { property: "og:description", content: "ידע, כלים והכוונה פיננסית — לבנות הרגל חיסכון ומסלול צמיחה גם מ-100 ש״ח בחודש." },
   ] }),
   component: Index,
 });
@@ -47,86 +48,7 @@ const trending = [
 function Index() {
   return (
     <PageLayout>
-      {/* HERO */}
-      <section className="relative pt-20 pb-20 overflow-hidden text-primary-foreground" style={{ background: "var(--gradient-hero)" }}>
-        <GridBg className="text-white" />
-        <div className="relative container mx-auto px-6 grid lg:grid-cols-12 gap-10 items-center">
-          <div className="lg:col-span-7 animate-fade-up">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold border border-white/20 bg-white/10 backdrop-blur">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-              פלטפורמה פיננסית חיה · ישראל
-            </span>
-            <h1 className="mt-6 text-4xl md:text-6xl lg:text-7xl font-black leading-[1.05] tracking-tight">
-              כמה כסף אתם מפסידים{" "}
-              <span className="bg-clip-text text-transparent" style={{ backgroundImage: "var(--gradient-gold)" }}>בלי לשים לב?</span>
-            </h1>
-            <p className="mt-5 text-lg md:text-xl text-primary-foreground/85 max-w-xl leading-relaxed">
-              המפה הפיננסית שמראה איך כסף באמת עובד — בלי הבטחות, בלי מכירה, רק כלים וידע.
-            </p>
-
-            <div className="mt-6 inline-flex items-center gap-3 px-4 py-2.5 rounded-xl border border-white/15 bg-white/5 backdrop-blur text-sm text-primary-foreground/90 max-w-xl w-full">
-              <Ticker />
-            </div>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/start" className="inline-flex items-center justify-center h-13 px-7 rounded-full font-bold text-accent-foreground hover:scale-[1.02] transition-all" style={{ background: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)", height: "3.25rem" }}>
-                בדוק את המצב שלך ←
-              </Link>
-              <Link to="/calculators" className="inline-flex items-center justify-center h-[3.25rem] px-6 rounded-full font-bold text-primary-foreground border border-white/30 bg-white/10 backdrop-blur hover:bg-white/20 transition-all">
-                פתח מחשבון
-              </Link>
-              <Link to="/taoyot" className="inline-flex items-center justify-center h-[3.25rem] px-6 rounded-full font-bold text-primary-foreground border border-white/30 bg-white/10 backdrop-blur hover:bg-white/20 transition-all">
-                הטעויות שעולות הכי הרבה
-              </Link>
-            </div>
-
-            <div className="mt-10 grid grid-cols-3 gap-4 max-w-lg">
-              {[
-                { v: 6, s: "+", l: "מחשבונים חיים" },
-                { v: 30, s: "+", l: "מדריכים מקיפים" },
-                { v: 5, s: "", l: "תחומי ליבה" },
-              ].map((s) => (
-                <div key={s.l} className="rounded-xl border border-white/10 bg-white/5 backdrop-blur p-3">
-                  <div className="text-2xl md:text-3xl font-black"><Counter value={s.v} suffix={s.s} /></div>
-                  <div className="text-[11px] text-primary-foreground/70">{s.l}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Hero dashboard widget */}
-          <div className="lg:col-span-5 animate-fade-up">
-            <div className="rounded-3xl border border-white/15 bg-white/5 backdrop-blur-xl p-6" style={{ boxShadow: "var(--shadow-glow)" }}>
-              <div className="flex items-center justify-between mb-4">
-                <div className="text-sm font-bold">הדאשבורד שלך · להמחשה</div>
-                <span className="text-[10px] font-bold tracking-widest text-accent uppercase">LIVE</span>
-              </div>
-              <div className="text-xs text-primary-foreground/70">העלות השקטה של 0.5% דמי ניהול ב-30 שנה</div>
-              <div className="mt-2 text-4xl md:text-5xl font-black bg-clip-text text-transparent" style={{ backgroundImage: "var(--gradient-gold)" }}>
-                <Counter value={312_400} prefix="₪" />
-              </div>
-              <div className="mt-1 text-xs text-primary-foreground/70">המחשה — לא תחזית. בודקים בקופה האישית.</div>
-
-              <div className="mt-6 grid grid-cols-3 gap-2">
-                {[
-                  { l: "אינפלציה", v: 3.1, s: "%" },
-                  { l: "ריבית", v: 4.5, s: "%" },
-                  { l: "ד.ניהול", v: 0.92, s: "%" },
-                ].map((s) => (
-                  <div key={s.l} className="rounded-xl border border-white/10 bg-white/5 p-3">
-                    <div className="text-[10px] text-primary-foreground/60 font-bold uppercase">{s.l}</div>
-                    <div className="text-lg font-black tabular-nums"><Counter value={s.v} decimals={s.l === "אינפלציה" ? 1 : 2} suffix={s.s} /></div>
-                  </div>
-                ))}
-              </div>
-
-              <Link to="/start" className="mt-5 w-full inline-flex items-center justify-center h-11 rounded-full text-sm font-bold text-accent-foreground hover:scale-[1.02] transition" style={{ background: "var(--gradient-gold)" }}>
-                התחל אבחון אישי <ArrowLeft size={14} className="me-1" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <BrightHero />
 
       {/* WIDGETS */}
       <Section className="-mt-10 relative z-10">
