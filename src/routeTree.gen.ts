@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TichnunPiansiRouteImport } from './routes/tichnun-piansi'
+import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as TaoyotRouteImport } from './routes/taoyot'
 import { Route as StartRouteImport } from './routes/start'
 import { Route as ShukHahonRouteImport } from './routes/shuk-hahon'
@@ -38,6 +39,11 @@ import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 const TichnunPiansiRoute = TichnunPiansiRouteImport.update({
   id: '/tichnun-piansi',
   path: '/tichnun-piansi',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThankYouRoute = ThankYouRouteImport.update({
+  id: '/thank-you',
+  path: '/thank-you',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TaoyotRoute = TaoyotRouteImport.update({
@@ -173,6 +179,7 @@ export interface FileRoutesByFullPath {
   '/shuk-hahon': typeof ShukHahonRoute
   '/start': typeof StartRoute
   '/taoyot': typeof TaoyotRouteWithChildren
+  '/thank-you': typeof ThankYouRoute
   '/tichnun-piansi': typeof TichnunPiansiRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/calculators/child': typeof CalculatorsChildRoute
@@ -200,6 +207,7 @@ export interface FileRoutesByTo {
   '/shuk-hahon': typeof ShukHahonRoute
   '/start': typeof StartRoute
   '/taoyot': typeof TaoyotRouteWithChildren
+  '/thank-you': typeof ThankYouRoute
   '/tichnun-piansi': typeof TichnunPiansiRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/calculators/child': typeof CalculatorsChildRoute
@@ -228,6 +236,7 @@ export interface FileRoutesById {
   '/shuk-hahon': typeof ShukHahonRoute
   '/start': typeof StartRoute
   '/taoyot': typeof TaoyotRouteWithChildren
+  '/thank-you': typeof ThankYouRoute
   '/tichnun-piansi': typeof TichnunPiansiRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/calculators/child': typeof CalculatorsChildRoute
@@ -257,6 +266,7 @@ export interface FileRouteTypes {
     | '/shuk-hahon'
     | '/start'
     | '/taoyot'
+    | '/thank-you'
     | '/tichnun-piansi'
     | '/blog/$slug'
     | '/calculators/child'
@@ -284,6 +294,7 @@ export interface FileRouteTypes {
     | '/shuk-hahon'
     | '/start'
     | '/taoyot'
+    | '/thank-you'
     | '/tichnun-piansi'
     | '/blog/$slug'
     | '/calculators/child'
@@ -311,6 +322,7 @@ export interface FileRouteTypes {
     | '/shuk-hahon'
     | '/start'
     | '/taoyot'
+    | '/thank-you'
     | '/tichnun-piansi'
     | '/blog/$slug'
     | '/calculators/child'
@@ -339,6 +351,7 @@ export interface RootRouteChildren {
   ShukHahonRoute: typeof ShukHahonRoute
   StartRoute: typeof StartRoute
   TaoyotRoute: typeof TaoyotRouteWithChildren
+  ThankYouRoute: typeof ThankYouRoute
   TichnunPiansiRoute: typeof TichnunPiansiRoute
   LegalAccessibilityRoute: typeof LegalAccessibilityRoute
   LegalCookiesRoute: typeof LegalCookiesRoute
@@ -354,6 +367,13 @@ declare module '@tanstack/react-router' {
       path: '/tichnun-piansi'
       fullPath: '/tichnun-piansi'
       preLoaderRoute: typeof TichnunPiansiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/thank-you': {
+      id: '/thank-you'
+      path: '/thank-you'
+      fullPath: '/thank-you'
+      preLoaderRoute: typeof ThankYouRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/taoyot': {
@@ -582,6 +602,7 @@ const rootRouteChildren: RootRouteChildren = {
   ShukHahonRoute: ShukHahonRoute,
   StartRoute: StartRoute,
   TaoyotRoute: TaoyotRouteWithChildren,
+  ThankYouRoute: ThankYouRoute,
   TichnunPiansiRoute: TichnunPiansiRoute,
   LegalAccessibilityRoute: LegalAccessibilityRoute,
   LegalCookiesRoute: LegalCookiesRoute,
