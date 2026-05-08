@@ -17,7 +17,25 @@ export const Route = createFileRoute("/calculators")({
     ];
     return (
       <PageLayout>
-        <PageHero eyebrow="כלים" title="מחשבונים חכמים" sub="ללא הרשמה, ללא התחייבות. אתם מקבלים תוצאה ברורה בדקה." />
+        <PageHero
+          eyebrow="מחשבונים"
+          title="מספרים עושים סדר בכסף"
+          sub="המחשבונים של המפה הפיננסית עוזרים לך להבין החזר חודשי, תשואה, חיסכון, מס שבח, פנסיה והשקעות, כדי לקבל תמונה ראשונית לפני פנייה לבעל מקצוע."
+          ctas={[
+            { to: "/calculators/family", label: "פתח מחשבון", variant: "primary" },
+            { to: "/start", label: "בחר תחום לבדיקה", variant: "ghost" },
+          ]}
+          actions={{
+            title: "מה עושים עכשיו",
+            items: [
+              "בוחרים מחשבון לפי המטרה הפיננסית שלך",
+              "מזינים מספרים אמיתיים מהחיים",
+              "מבינים את ההשפעה של ריבית, זמן ועמלות",
+              "ממשיכים לבדיקה מקצועית עם נתונים בידיים",
+            ],
+            cta: { to: "/start", label: "התחל אבחון אישי" },
+          }}
+        />
         <Section>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {items.map((c) => (
