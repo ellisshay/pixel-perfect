@@ -1,8 +1,8 @@
 import { ReactNode, useState } from "react";
 import { Disclaimer } from "@/components/layout/Section";
 
-export function CalcShell({ title, desc, inputs, results, footer }: {
-  title: string; desc?: string; inputs: ReactNode; results: ReactNode; footer?: ReactNode;
+export function CalcShell({ title, desc, inputs, results, footer, chart }: {
+  title: string; desc?: string; inputs: ReactNode; results: ReactNode; footer?: ReactNode; chart?: ReactNode;
 }) {
   const [ack, setAck] = useState(false);
   return (
@@ -38,6 +38,12 @@ export function CalcShell({ title, desc, inputs, results, footer }: {
           </button>
         </div>
       </div>
+      {chart && (
+        <div className="lg:col-span-2 rounded-2xl border border-border bg-card p-5 md:p-6" style={{ boxShadow: "var(--shadow-soft)" }}>
+          <div className="text-xs font-bold tracking-widest text-muted-foreground uppercase mb-3">המחשה גרפית</div>
+          <div className="w-full h-64 md:h-72">{chart}</div>
+        </div>
+      )}
       <div className="lg:col-span-2"><Disclaimer /></div>
     </div>
   );
