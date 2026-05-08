@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { useState } from "react";
+import { useState, forwardRef } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -384,27 +384,20 @@ function LeadForm({ topRec, answers, result, onSubmitted }: { topRec: Rec; answe
   );
 }
 
-const Input = (() => {
-  // eslint-disable-next-line react/display-name
-  const C = (
-    { label, error, ...props }: { label: string; error?: string } & React.InputHTMLAttributes<HTMLInputElement>,
-    ref: React.Ref<HTMLInputElement>,
-  ) => (
+const Input = forwardRef<HTMLInputElement, { label: string; error?: string } & React.InputHTMLAttributes<HTMLInputElement>>(
+  ({ label, error, ...props }, ref) => (
     <label className="block">
       <span className="text-xs font-semibold mb-1 block" style={{ color: NAVY }}>{label}</span>
       <input ref={ref} {...props} className="w-full px-3 py-2 rounded-lg text-sm outline-none transition-colors"
         style={{ border: `1px solid ${error ? "#DC2626" : "#CBD5E1"}`, background: "white" }} />
       {error && <span className="text-[11px] mt-1 block" style={{ color: "#DC2626" }}>{error}</span>}
     </label>
-  );
-  return (require("react") as typeof import("react")).forwardRef(C);
-})();
+  ),
+);
+Input.displayName = "Input";
 
-const Check = (() => {
-  const C = (
-    { label, error, required, ...props }: { label: string; error?: string; required?: boolean } & React.InputHTMLAttributes<HTMLInputElement>,
-    ref: React.Ref<HTMLInputElement>,
-  ) => (
+const Check = forwardRef<HTMLInputElement, { label: string; error?: string; required?: boolean } & React.InputHTMLAttributes<HTMLInputElement>>(
+  ({ label, error, required, ...props }, ref) => (
     <label className="flex items-start gap-2 text-xs cursor-pointer" style={{ color: "#334155" }}>
       <input type="checkbox" ref={ref} {...props} className="mt-0.5 w-4 h-4 cursor-pointer" style={{ accentColor: GREEN }} />
       <span>
@@ -413,9 +406,9 @@ const Check = (() => {
         {error && <span className="block text-[11px] mt-0.5" style={{ color: "#DC2626" }}>{error}</span>}
       </span>
     </label>
-  );
-  return (require("react") as typeof import("react")).forwardRef(C);
-})();
+  ),
+);
+Check.displayName = "Check";
 
 function ThankYouView({ result }: { result: Result }) {
   const top = result.recommendations[0];
