@@ -13,7 +13,25 @@ export const Route = createFileRoute("/taoyot")({
     const list = f === "הכל" ? mistakes : mistakes.filter((m) => m.category === f);
     return (
       <PageLayout>
-        <PageHero eyebrow="טעויות נפוצות" title="טעויות פיננסיות שאנשים עושים" sub="מה לא לעשות חשוב לפעמים יותר ממה כן." />
+        <PageHero
+          eyebrow="טעויות נפוצות"
+          title="הטעויות הקטנות שעולות הרבה כסף"
+          sub="רוב האנשים לא נופלים בגלל החלטה אחת גדולה, אלא בגלל רצף החלטות קטנות בלי בדיקה. כאן תלמד מה לבדוק לפני משכנתא, השקעה, ביטוח, פנסיה או עסקת נדל״ן."
+          ctas={[
+            { to: "/blog", label: "למד מהטעויות", variant: "primary" },
+            { to: "/start", label: "בדוק את המצב שלך", variant: "ghost" },
+          ]}
+          actions={{
+            title: "מה עושים עכשיו",
+            items: [
+              "מזהים את התחום הרלוונטי לטעות שאתה חושש ממנה",
+              "קוראים מה לבדוק לפני שמקבלים החלטה",
+              "ממפים פערים בתיק שלך מול הטעויות הנפוצות",
+              "ממשיכים לאבחון או למחשבון מתאים",
+            ],
+            cta: { to: "/start", label: "התחל אבחון של 5 שאלות" },
+          }}
+        />
         <Section>
           <div className="flex flex-wrap gap-2 mb-8">
             {cats.map((c) => (
