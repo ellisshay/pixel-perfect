@@ -1,5 +1,6 @@
 export const navItems = [
   { to: "/", label: "בית" },
+  { to: "/yoetz", label: "היועץ הפיננסי שלך" },
   { to: "/shuk-hahon", label: "שוק ההון" },
   { to: "/nadlan", label: "נדל״ן" },
   { to: "/tichnun-piansi", label: "תכנון פיננסי" },
