@@ -5,7 +5,13 @@ import { Section, SectionHeader, Disclaimer } from "@/components/layout/Section"
 import { ReferralForm } from "./ReferralForm";
 
 type TopicProps = {
-  hero: { eyebrow?: string; title: string; sub?: string };
+  hero: {
+    eyebrow?: string;
+    title: string;
+    sub?: string;
+    ctas?: { to: any; label: string; variant?: "primary" | "ghost" }[];
+    actions?: { title?: string; items: string[]; cta?: { to: any; label: string; variant?: "primary" | "ghost" } };
+  };
   subtopics: string[];
   calculators: { to: any; t: string }[];
   guides: { slug: string; title: string; excerpt: string; readTime: string }[];
@@ -17,10 +23,18 @@ type TopicProps = {
 export function TopicPage({ hero, subtopics, calculators, guides, mistakes, referrals, area }: TopicProps) {
   return (
     <>
-      <PageHero {...hero} ctas={[
-        { to: "/start", label: "התחל כאן", variant: "primary" },
-        { to: "/calculators", label: "מחשבונים", variant: "ghost" },
-      ]} />
+      <PageHero
+        eyebrow={hero.eyebrow}
+        title={hero.title}
+        sub={hero.sub}
+        ctas={
+          hero.ctas ?? [
+            { to: "/start", label: "התחל כאן", variant: "primary" },
+            { to: "/calculators", label: "מחשבונים", variant: "ghost" },
+          ]
+        }
+        actions={hero.actions}
+      />
       <Section>
         <SectionHeader eyebrow="תתי תחומים" title="מה תמצאו כאן" center={false} />
         <div className="mt-8 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">

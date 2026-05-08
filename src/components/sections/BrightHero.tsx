@@ -75,18 +75,17 @@ export function BrightHero() {
               המפה הפיננסית · ידע, כלים והכוונה
             </span>
             <h1 className="mt-6 text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tight text-primary">
-              הכסף שלך צריך לעבוד.
+              הכסף שלך צריך כיוון,
               <br />
               <span
                 className="bg-clip-text text-transparent"
                 style={{ backgroundImage: "linear-gradient(135deg, oklch(0.24 0.045 252), oklch(0.61 0.13 165))" }}
               >
-                גם אם אתה מתחיל מ-100 ש״ח בחודש
+                לא עוד הבטחות
               </span>
             </h1>
             <p className="mt-5 text-lg md:text-xl text-foreground/75 max-w-2xl leading-relaxed">
-              המפה הפיננסית עוזרת לך להבין איך לבנות הרגל חיסכון, לבחור מסלול צמיחה, להימנע
-              מטעויות יקרות ולדעת מתי נכון לדבר עם בעל מקצוע.
+              המפה הפיננסית עוזרת לך להבין איך לחסוך, להשקיע, לבדוק סיכונים ולבנות מסלול צמיחה אישי, גם אם אתה מתחיל מ-100 ש״ח בחודש.
             </p>
 
             <div className="mt-7 flex flex-wrap gap-3 items-center">
@@ -95,7 +94,7 @@ export function BrightHero() {
                 className="inline-flex items-center justify-center h-[3.25rem] px-7 rounded-full font-bold text-accent-foreground hover:scale-[1.02] transition-all"
                 style={{ background: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}
               >
-                בדוק מאיפה נכון לך להתחיל
+                בדוק מאיפה להתחיל
               </Link>
               <Link
                 to="/shuk-hahon"
