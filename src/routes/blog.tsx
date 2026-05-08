@@ -13,7 +13,25 @@ export const Route = createFileRoute("/blog")({
     const list = f === "הכל" ? guides : guides.filter((g) => g.category === f);
     return (
       <PageLayout>
-        <PageHero eyebrow="בלוג" title="ידע פיננסי, ברור ופשוט" />
+        <PageHero
+          eyebrow="בלוג ומדריכים"
+          title="מדריכים פיננסיים פשוטים לאנשים אמיתיים"
+          sub="מאמרים, מדריכים, סיפורים וכלים שיעזרו לך להבין כסף, השקעות, חיסכון, נדל״ן, משכנתאות ופנסיה בלי מילים מסובכות ובלי הבטחות ריקות."
+          ctas={[
+            { to: "/blog", label: "קרא מדריכים", variant: "primary" },
+            { to: "/start", label: "בחר נושא", variant: "ghost" },
+          ]}
+          actions={{
+            title: "מה עושים עכשיו",
+            items: [
+              "בוחרים תחום: שוק ההון, נדל״ן, משכנתאות או פנסיה",
+              "קוראים מדריך אחד שמתחבר לשאלה הכי בוערת",
+              "מסמנים פעולה אחת לבצע השבוע",
+              "ממשיכים למחשבון או לאבחון מתאים",
+            ],
+            cta: { to: "/start", label: "התחל אבחון אישי" },
+          }}
+        />
         <Section>
           <div className="flex flex-wrap gap-2 mb-8">
             {cats.map((c) => (
