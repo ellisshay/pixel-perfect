@@ -19,6 +19,7 @@ import { Route as ShkifutRouteImport } from './routes/shkifut'
 import { Route as ShitufimRouteImport } from './routes/shitufim'
 import { Route as NadlanRouteImport } from './routes/nadlan'
 import { Route as MashkantaotRouteImport } from './routes/mashkantaot'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CalculatorsRouteImport } from './routes/calculators'
 import { Route as BlogRouteImport } from './routes/blog'
@@ -37,6 +38,7 @@ import { Route as CalculatorsFamilyRouteImport } from './routes/calculators/fami
 import { Route as CalculatorsCompoundRouteImport } from './routes/calculators/compound'
 import { Route as CalculatorsChildRouteImport } from './routes/calculators/child'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as AdminLeadsRouteImport } from './routes/admin.leads'
 
 const YoetzRoute = YoetzRouteImport.update({
   id: '/yoetz',
@@ -86,6 +88,11 @@ const NadlanRoute = NadlanRouteImport.update({
 const MashkantaotRoute = MashkantaotRouteImport.update({
   id: '/mashkantaot',
   path: '/mashkantaot',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -178,12 +185,18 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => BlogRoute,
 } as any)
+const AdminLeadsRoute = AdminLeadsRouteImport.update({
+  id: '/admin/leads',
+  path: '/admin/leads',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blog': typeof BlogRouteWithChildren
   '/calculators': typeof CalculatorsRouteWithChildren
   '/contact': typeof ContactRoute
+  '/login': typeof LoginRoute
   '/mashkantaot': typeof MashkantaotRoute
   '/nadlan': typeof NadlanRoute
   '/shitufim': typeof ShitufimRoute
@@ -194,6 +207,7 @@ export interface FileRoutesByFullPath {
   '/thank-you': typeof ThankYouRoute
   '/tichnun-piansi': typeof TichnunPiansiRoute
   '/yoetz': typeof YoetzRoute
+  '/admin/leads': typeof AdminLeadsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/calculators/child': typeof CalculatorsChildRoute
   '/calculators/compound': typeof CalculatorsCompoundRoute
@@ -214,6 +228,7 @@ export interface FileRoutesByTo {
   '/blog': typeof BlogRouteWithChildren
   '/calculators': typeof CalculatorsRouteWithChildren
   '/contact': typeof ContactRoute
+  '/login': typeof LoginRoute
   '/mashkantaot': typeof MashkantaotRoute
   '/nadlan': typeof NadlanRoute
   '/shitufim': typeof ShitufimRoute
@@ -224,6 +239,7 @@ export interface FileRoutesByTo {
   '/thank-you': typeof ThankYouRoute
   '/tichnun-piansi': typeof TichnunPiansiRoute
   '/yoetz': typeof YoetzRoute
+  '/admin/leads': typeof AdminLeadsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/calculators/child': typeof CalculatorsChildRoute
   '/calculators/compound': typeof CalculatorsCompoundRoute
@@ -245,6 +261,7 @@ export interface FileRoutesById {
   '/blog': typeof BlogRouteWithChildren
   '/calculators': typeof CalculatorsRouteWithChildren
   '/contact': typeof ContactRoute
+  '/login': typeof LoginRoute
   '/mashkantaot': typeof MashkantaotRoute
   '/nadlan': typeof NadlanRoute
   '/shitufim': typeof ShitufimRoute
@@ -255,6 +272,7 @@ export interface FileRoutesById {
   '/thank-you': typeof ThankYouRoute
   '/tichnun-piansi': typeof TichnunPiansiRoute
   '/yoetz': typeof YoetzRoute
+  '/admin/leads': typeof AdminLeadsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/calculators/child': typeof CalculatorsChildRoute
   '/calculators/compound': typeof CalculatorsCompoundRoute
@@ -277,6 +295,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/calculators'
     | '/contact'
+    | '/login'
     | '/mashkantaot'
     | '/nadlan'
     | '/shitufim'
@@ -287,6 +306,7 @@ export interface FileRouteTypes {
     | '/thank-you'
     | '/tichnun-piansi'
     | '/yoetz'
+    | '/admin/leads'
     | '/blog/$slug'
     | '/calculators/child'
     | '/calculators/compound'
@@ -307,6 +327,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/calculators'
     | '/contact'
+    | '/login'
     | '/mashkantaot'
     | '/nadlan'
     | '/shitufim'
@@ -317,6 +338,7 @@ export interface FileRouteTypes {
     | '/thank-you'
     | '/tichnun-piansi'
     | '/yoetz'
+    | '/admin/leads'
     | '/blog/$slug'
     | '/calculators/child'
     | '/calculators/compound'
@@ -337,6 +359,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/calculators'
     | '/contact'
+    | '/login'
     | '/mashkantaot'
     | '/nadlan'
     | '/shitufim'
@@ -347,6 +370,7 @@ export interface FileRouteTypes {
     | '/thank-you'
     | '/tichnun-piansi'
     | '/yoetz'
+    | '/admin/leads'
     | '/blog/$slug'
     | '/calculators/child'
     | '/calculators/compound'
@@ -368,6 +392,7 @@ export interface RootRouteChildren {
   BlogRoute: typeof BlogRouteWithChildren
   CalculatorsRoute: typeof CalculatorsRouteWithChildren
   ContactRoute: typeof ContactRoute
+  LoginRoute: typeof LoginRoute
   MashkantaotRoute: typeof MashkantaotRoute
   NadlanRoute: typeof NadlanRoute
   ShitufimRoute: typeof ShitufimRoute
@@ -378,6 +403,7 @@ export interface RootRouteChildren {
   ThankYouRoute: typeof ThankYouRoute
   TichnunPiansiRoute: typeof TichnunPiansiRoute
   YoetzRoute: typeof YoetzRoute
+  AdminLeadsRoute: typeof AdminLeadsRoute
   LegalAccessibilityRoute: typeof LegalAccessibilityRoute
   LegalCookiesRoute: typeof LegalCookiesRoute
   LegalDisclosureRoute: typeof LegalDisclosureRoute
@@ -455,6 +481,13 @@ declare module '@tanstack/react-router' {
       path: '/mashkantaot'
       fullPath: '/mashkantaot'
       preLoaderRoute: typeof MashkantaotRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -583,6 +616,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof BlogRoute
     }
+    '/admin/leads': {
+      id: '/admin/leads'
+      path: '/admin/leads'
+      fullPath: '/admin/leads'
+      preLoaderRoute: typeof AdminLeadsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -636,6 +676,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlogRoute: BlogRouteWithChildren,
   CalculatorsRoute: CalculatorsRouteWithChildren,
   ContactRoute: ContactRoute,
+  LoginRoute: LoginRoute,
   MashkantaotRoute: MashkantaotRoute,
   NadlanRoute: NadlanRoute,
   ShitufimRoute: ShitufimRoute,
@@ -646,6 +687,7 @@ const rootRouteChildren: RootRouteChildren = {
   ThankYouRoute: ThankYouRoute,
   TichnunPiansiRoute: TichnunPiansiRoute,
   YoetzRoute: YoetzRoute,
+  AdminLeadsRoute: AdminLeadsRoute,
   LegalAccessibilityRoute: LegalAccessibilityRoute,
   LegalCookiesRoute: LegalCookiesRoute,
   LegalDisclosureRoute: LegalDisclosureRoute,

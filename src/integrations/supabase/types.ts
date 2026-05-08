@@ -14,9 +14,51 @@ export type Database = {
   }
   public: {
     Tables: {
+      lead_answers: {
+        Row: {
+          answer_label: string | null
+          answer_value: string
+          created_at: string
+          id: string
+          lead_id: string
+          question_key: string
+          question_label: string
+          step_index: number | null
+        }
+        Insert: {
+          answer_label?: string | null
+          answer_value: string
+          created_at?: string
+          id?: string
+          lead_id: string
+          question_key: string
+          question_label: string
+          step_index?: number | null
+        }
+        Update: {
+          answer_label?: string | null
+          answer_value?: string
+          created_at?: string
+          id?: string
+          lead_id?: string
+          question_key?: string
+          question_label?: string
+          step_index?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_answers_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       leads: {
         Row: {
           assigned_to: string | null
+          calculator_type: string | null
           capital_range: string | null
           consent_timestamp: string
           created_at: string
@@ -26,16 +68,22 @@ export type Database = {
           id: string
           marketing_consent: boolean
           metadata: Json
+          monthly_saving_range: string | null
           name: string
           notes: string | null
+          partner_id: string | null
           phone: string
           privacy_consent: boolean
+          quiz_result: string | null
+          source_cta: string | null
           source_page: string | null
           status: string
           sub_domain: string | null
+          urgency: string | null
         }
         Insert: {
           assigned_to?: string | null
+          calculator_type?: string | null
           capital_range?: string | null
           consent_timestamp?: string
           created_at?: string
@@ -45,16 +93,22 @@ export type Database = {
           id?: string
           marketing_consent?: boolean
           metadata?: Json
+          monthly_saving_range?: string | null
           name: string
           notes?: string | null
+          partner_id?: string | null
           phone: string
           privacy_consent: boolean
+          quiz_result?: string | null
+          source_cta?: string | null
           source_page?: string | null
           status?: string
           sub_domain?: string | null
+          urgency?: string | null
         }
         Update: {
           assigned_to?: string | null
+          calculator_type?: string | null
           capital_range?: string | null
           consent_timestamp?: string
           created_at?: string
@@ -64,13 +118,18 @@ export type Database = {
           id?: string
           marketing_consent?: boolean
           metadata?: Json
+          monthly_saving_range?: string | null
           name?: string
           notes?: string | null
+          partner_id?: string | null
           phone?: string
           privacy_consent?: boolean
+          quiz_result?: string | null
+          source_cta?: string | null
           source_page?: string | null
           status?: string
           sub_domain?: string | null
+          urgency?: string | null
         }
         Relationships: []
       }
