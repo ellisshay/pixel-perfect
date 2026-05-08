@@ -103,6 +103,13 @@ export function BrightHero() {
                 למד על מסלולי הצמיחה
               </Link>
               <Link
+                to="/yoetz"
+                className="inline-flex items-center justify-center h-[3.25rem] px-7 rounded-full font-bold border-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground transition-all gap-2"
+              >
+                <Sparkles size={16} />
+                קבל ניתוח AI חינם
+              </Link>
+              <Link
                 to="/calculators"
                 className="inline-flex items-center justify-center h-11 px-5 rounded-full text-sm font-semibold text-primary/80 hover:text-primary underline-offset-4 hover:underline transition-all"
               >
