@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as YoetzRouteImport } from './routes/yoetz'
 import { Route as TichnunPiansiRouteImport } from './routes/tichnun-piansi'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as TaoyotRouteImport } from './routes/taoyot'
@@ -37,6 +38,11 @@ import { Route as CalculatorsCompoundRouteImport } from './routes/calculators/co
 import { Route as CalculatorsChildRouteImport } from './routes/calculators/child'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
+const YoetzRoute = YoetzRouteImport.update({
+  id: '/yoetz',
+  path: '/yoetz',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TichnunPiansiRoute = TichnunPiansiRouteImport.update({
   id: '/tichnun-piansi',
   path: '/tichnun-piansi',
@@ -187,6 +193,7 @@ export interface FileRoutesByFullPath {
   '/taoyot': typeof TaoyotRouteWithChildren
   '/thank-you': typeof ThankYouRoute
   '/tichnun-piansi': typeof TichnunPiansiRoute
+  '/yoetz': typeof YoetzRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/calculators/child': typeof CalculatorsChildRoute
   '/calculators/compound': typeof CalculatorsCompoundRoute
@@ -216,6 +223,7 @@ export interface FileRoutesByTo {
   '/taoyot': typeof TaoyotRouteWithChildren
   '/thank-you': typeof ThankYouRoute
   '/tichnun-piansi': typeof TichnunPiansiRoute
+  '/yoetz': typeof YoetzRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/calculators/child': typeof CalculatorsChildRoute
   '/calculators/compound': typeof CalculatorsCompoundRoute
@@ -246,6 +254,7 @@ export interface FileRoutesById {
   '/taoyot': typeof TaoyotRouteWithChildren
   '/thank-you': typeof ThankYouRoute
   '/tichnun-piansi': typeof TichnunPiansiRoute
+  '/yoetz': typeof YoetzRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/calculators/child': typeof CalculatorsChildRoute
   '/calculators/compound': typeof CalculatorsCompoundRoute
@@ -277,6 +286,7 @@ export interface FileRouteTypes {
     | '/taoyot'
     | '/thank-you'
     | '/tichnun-piansi'
+    | '/yoetz'
     | '/blog/$slug'
     | '/calculators/child'
     | '/calculators/compound'
@@ -306,6 +316,7 @@ export interface FileRouteTypes {
     | '/taoyot'
     | '/thank-you'
     | '/tichnun-piansi'
+    | '/yoetz'
     | '/blog/$slug'
     | '/calculators/child'
     | '/calculators/compound'
@@ -335,6 +346,7 @@ export interface FileRouteTypes {
     | '/taoyot'
     | '/thank-you'
     | '/tichnun-piansi'
+    | '/yoetz'
     | '/blog/$slug'
     | '/calculators/child'
     | '/calculators/compound'
@@ -365,6 +377,7 @@ export interface RootRouteChildren {
   TaoyotRoute: typeof TaoyotRouteWithChildren
   ThankYouRoute: typeof ThankYouRoute
   TichnunPiansiRoute: typeof TichnunPiansiRoute
+  YoetzRoute: typeof YoetzRoute
   LegalAccessibilityRoute: typeof LegalAccessibilityRoute
   LegalCookiesRoute: typeof LegalCookiesRoute
   LegalDisclosureRoute: typeof LegalDisclosureRoute
@@ -374,6 +387,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/yoetz': {
+      id: '/yoetz'
+      path: '/yoetz'
+      fullPath: '/yoetz'
+      preLoaderRoute: typeof YoetzRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tichnun-piansi': {
       id: '/tichnun-piansi'
       path: '/tichnun-piansi'
@@ -625,6 +645,7 @@ const rootRouteChildren: RootRouteChildren = {
   TaoyotRoute: TaoyotRouteWithChildren,
   ThankYouRoute: ThankYouRoute,
   TichnunPiansiRoute: TichnunPiansiRoute,
+  YoetzRoute: YoetzRoute,
   LegalAccessibilityRoute: LegalAccessibilityRoute,
   LegalCookiesRoute: LegalCookiesRoute,
   LegalDisclosureRoute: LegalDisclosureRoute,
@@ -634,13 +655,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
