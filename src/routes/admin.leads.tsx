@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, Fragment } from "react";
 import { Loader2, LogOut, RefreshCw } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Navbar } from "@/components/layout/Navbar";
@@ -215,8 +215,8 @@ function AdminLeadsPage() {
                 <tr><td colSpan={9} className="p-8 text-center text-muted-foreground">אין לידים עדיין</td></tr>
               )}
               {leads.map((l) => (
-                <>
-                  <tr key={l.id} className="border-t border-border hover:bg-muted/30">
+                <Fragment key={l.id}>
+                  <tr className="border-t border-border hover:bg-muted/30">
                     <td className="p-3 whitespace-nowrap text-xs text-muted-foreground">
                       {new Date(l.created_at).toLocaleString("he-IL")}
                     </td>
@@ -256,7 +256,7 @@ function AdminLeadsPage() {
                     </td>
                   </tr>
                   {openId === l.id && (
-                    <tr key={`${l.id}-answers`} className="bg-muted/20">
+                    <tr className="bg-muted/20">
                       <td colSpan={9} className="p-4">
                         <div className="text-xs font-semibold mb-2">תשובות שאלון:</div>
                         {answersById[l.id]?.length ? (
@@ -274,7 +274,7 @@ function AdminLeadsPage() {
                       </td>
                     </tr>
                   )}
-                </>
+                </Fragment>
               ))}
             </tbody>
           </table>
