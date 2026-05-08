@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TichnunPiansiRouteImport } from './routes/tichnun-piansi'
+import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as TaoyotRouteImport } from './routes/taoyot'
 import { Route as StartRouteImport } from './routes/start'
 import { Route as ShukHahonRouteImport } from './routes/shuk-hahon'
@@ -28,6 +29,7 @@ import { Route as LegalDisclosureRouteImport } from './routes/legal/disclosure'
 import { Route as LegalCookiesRouteImport } from './routes/legal/cookies'
 import { Route as LegalAccessibilityRouteImport } from './routes/legal/accessibility'
 import { Route as CalculatorsRealestateRouteImport } from './routes/calculators/realestate'
+import { Route as CalculatorsPensionRouteImport } from './routes/calculators/pension'
 import { Route as CalculatorsMortgageRouteImport } from './routes/calculators/mortgage'
 import { Route as CalculatorsInvestRouteImport } from './routes/calculators/invest'
 import { Route as CalculatorsFamilyRouteImport } from './routes/calculators/family'
@@ -38,6 +40,11 @@ import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 const TichnunPiansiRoute = TichnunPiansiRouteImport.update({
   id: '/tichnun-piansi',
   path: '/tichnun-piansi',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThankYouRoute = ThankYouRouteImport.update({
+  id: '/thank-you',
+  path: '/thank-you',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TaoyotRoute = TaoyotRouteImport.update({
@@ -130,6 +137,11 @@ const CalculatorsRealestateRoute = CalculatorsRealestateRouteImport.update({
   path: '/realestate',
   getParentRoute: () => CalculatorsRoute,
 } as any)
+const CalculatorsPensionRoute = CalculatorsPensionRouteImport.update({
+  id: '/pension',
+  path: '/pension',
+  getParentRoute: () => CalculatorsRoute,
+} as any)
 const CalculatorsMortgageRoute = CalculatorsMortgageRouteImport.update({
   id: '/mortgage',
   path: '/mortgage',
@@ -173,6 +185,7 @@ export interface FileRoutesByFullPath {
   '/shuk-hahon': typeof ShukHahonRoute
   '/start': typeof StartRoute
   '/taoyot': typeof TaoyotRouteWithChildren
+  '/thank-you': typeof ThankYouRoute
   '/tichnun-piansi': typeof TichnunPiansiRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/calculators/child': typeof CalculatorsChildRoute
@@ -180,6 +193,7 @@ export interface FileRoutesByFullPath {
   '/calculators/family': typeof CalculatorsFamilyRoute
   '/calculators/invest': typeof CalculatorsInvestRoute
   '/calculators/mortgage': typeof CalculatorsMortgageRoute
+  '/calculators/pension': typeof CalculatorsPensionRoute
   '/calculators/realestate': typeof CalculatorsRealestateRoute
   '/legal/accessibility': typeof LegalAccessibilityRoute
   '/legal/cookies': typeof LegalCookiesRoute
@@ -200,6 +214,7 @@ export interface FileRoutesByTo {
   '/shuk-hahon': typeof ShukHahonRoute
   '/start': typeof StartRoute
   '/taoyot': typeof TaoyotRouteWithChildren
+  '/thank-you': typeof ThankYouRoute
   '/tichnun-piansi': typeof TichnunPiansiRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/calculators/child': typeof CalculatorsChildRoute
@@ -207,6 +222,7 @@ export interface FileRoutesByTo {
   '/calculators/family': typeof CalculatorsFamilyRoute
   '/calculators/invest': typeof CalculatorsInvestRoute
   '/calculators/mortgage': typeof CalculatorsMortgageRoute
+  '/calculators/pension': typeof CalculatorsPensionRoute
   '/calculators/realestate': typeof CalculatorsRealestateRoute
   '/legal/accessibility': typeof LegalAccessibilityRoute
   '/legal/cookies': typeof LegalCookiesRoute
@@ -228,6 +244,7 @@ export interface FileRoutesById {
   '/shuk-hahon': typeof ShukHahonRoute
   '/start': typeof StartRoute
   '/taoyot': typeof TaoyotRouteWithChildren
+  '/thank-you': typeof ThankYouRoute
   '/tichnun-piansi': typeof TichnunPiansiRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/calculators/child': typeof CalculatorsChildRoute
@@ -235,6 +252,7 @@ export interface FileRoutesById {
   '/calculators/family': typeof CalculatorsFamilyRoute
   '/calculators/invest': typeof CalculatorsInvestRoute
   '/calculators/mortgage': typeof CalculatorsMortgageRoute
+  '/calculators/pension': typeof CalculatorsPensionRoute
   '/calculators/realestate': typeof CalculatorsRealestateRoute
   '/legal/accessibility': typeof LegalAccessibilityRoute
   '/legal/cookies': typeof LegalCookiesRoute
@@ -257,6 +275,7 @@ export interface FileRouteTypes {
     | '/shuk-hahon'
     | '/start'
     | '/taoyot'
+    | '/thank-you'
     | '/tichnun-piansi'
     | '/blog/$slug'
     | '/calculators/child'
@@ -264,6 +283,7 @@ export interface FileRouteTypes {
     | '/calculators/family'
     | '/calculators/invest'
     | '/calculators/mortgage'
+    | '/calculators/pension'
     | '/calculators/realestate'
     | '/legal/accessibility'
     | '/legal/cookies'
@@ -284,6 +304,7 @@ export interface FileRouteTypes {
     | '/shuk-hahon'
     | '/start'
     | '/taoyot'
+    | '/thank-you'
     | '/tichnun-piansi'
     | '/blog/$slug'
     | '/calculators/child'
@@ -291,6 +312,7 @@ export interface FileRouteTypes {
     | '/calculators/family'
     | '/calculators/invest'
     | '/calculators/mortgage'
+    | '/calculators/pension'
     | '/calculators/realestate'
     | '/legal/accessibility'
     | '/legal/cookies'
@@ -311,6 +333,7 @@ export interface FileRouteTypes {
     | '/shuk-hahon'
     | '/start'
     | '/taoyot'
+    | '/thank-you'
     | '/tichnun-piansi'
     | '/blog/$slug'
     | '/calculators/child'
@@ -318,6 +341,7 @@ export interface FileRouteTypes {
     | '/calculators/family'
     | '/calculators/invest'
     | '/calculators/mortgage'
+    | '/calculators/pension'
     | '/calculators/realestate'
     | '/legal/accessibility'
     | '/legal/cookies'
@@ -339,6 +363,7 @@ export interface RootRouteChildren {
   ShukHahonRoute: typeof ShukHahonRoute
   StartRoute: typeof StartRoute
   TaoyotRoute: typeof TaoyotRouteWithChildren
+  ThankYouRoute: typeof ThankYouRoute
   TichnunPiansiRoute: typeof TichnunPiansiRoute
   LegalAccessibilityRoute: typeof LegalAccessibilityRoute
   LegalCookiesRoute: typeof LegalCookiesRoute
@@ -354,6 +379,13 @@ declare module '@tanstack/react-router' {
       path: '/tichnun-piansi'
       fullPath: '/tichnun-piansi'
       preLoaderRoute: typeof TichnunPiansiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/thank-you': {
+      id: '/thank-you'
+      path: '/thank-you'
+      fullPath: '/thank-you'
+      preLoaderRoute: typeof ThankYouRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/taoyot': {
@@ -482,6 +514,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CalculatorsRealestateRouteImport
       parentRoute: typeof CalculatorsRoute
     }
+    '/calculators/pension': {
+      id: '/calculators/pension'
+      path: '/pension'
+      fullPath: '/calculators/pension'
+      preLoaderRoute: typeof CalculatorsPensionRouteImport
+      parentRoute: typeof CalculatorsRoute
+    }
     '/calculators/mortgage': {
       id: '/calculators/mortgage'
       path: '/mortgage'
@@ -543,6 +582,7 @@ interface CalculatorsRouteChildren {
   CalculatorsFamilyRoute: typeof CalculatorsFamilyRoute
   CalculatorsInvestRoute: typeof CalculatorsInvestRoute
   CalculatorsMortgageRoute: typeof CalculatorsMortgageRoute
+  CalculatorsPensionRoute: typeof CalculatorsPensionRoute
   CalculatorsRealestateRoute: typeof CalculatorsRealestateRoute
 }
 
@@ -552,6 +592,7 @@ const CalculatorsRouteChildren: CalculatorsRouteChildren = {
   CalculatorsFamilyRoute: CalculatorsFamilyRoute,
   CalculatorsInvestRoute: CalculatorsInvestRoute,
   CalculatorsMortgageRoute: CalculatorsMortgageRoute,
+  CalculatorsPensionRoute: CalculatorsPensionRoute,
   CalculatorsRealestateRoute: CalculatorsRealestateRoute,
 }
 
@@ -582,6 +623,7 @@ const rootRouteChildren: RootRouteChildren = {
   ShukHahonRoute: ShukHahonRoute,
   StartRoute: StartRoute,
   TaoyotRoute: TaoyotRouteWithChildren,
+  ThankYouRoute: ThankYouRoute,
   TichnunPiansiRoute: TichnunPiansiRoute,
   LegalAccessibilityRoute: LegalAccessibilityRoute,
   LegalCookiesRoute: LegalCookiesRoute,
@@ -592,13 +634,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
