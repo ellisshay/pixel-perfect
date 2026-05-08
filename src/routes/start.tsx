@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Route as YoetzRoute } from "./yoetz";
 
+const YoetzComponent = YoetzRoute.options.component ?? (() => null);
+
 export const Route = createFileRoute("/start")({
   head: () => ({
     meta: [
@@ -10,5 +12,5 @@ export const Route = createFileRoute("/start")({
       { property: "og:description", content: "ציון פיננסי, תובנה אישית והמלצות פעולה מותאמות לכם." },
     ],
   }),
-  component: YoetzRoute.options.component!,
+  component: YoetzComponent,
 });
