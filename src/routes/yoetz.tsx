@@ -146,7 +146,7 @@ function YoetzPage() {
       </main>
 
       <footer className="mt-12 py-6 text-center text-xs" style={{ color: "#64748B" }}>
-        🔒 SSL · חוק הגנת הפרטיות התשמ״א-1981 · מאגר מידע רשום ·{" "}
+        🔒 SSL · חוק הגנת הפרטיות התשמ״א-1981 ·{" "}
         <a href="/legal/privacy" className="underline">מדיניות פרטיות</a>
       </footer>
     </div>
@@ -378,7 +378,7 @@ function LeadForm({ topRec, answers, result, onSubmitted }: { topRec: Rec; answe
       </button>
 
       <p className="text-[11px] text-center" style={{ color: "#64748B" }}>
-        🔒 SSL · חוק הגנת הפרטיות תשמ״א-1981 · מאגר מידע רשום
+        🔒 SSL · חוק הגנת הפרטיות תשמ״א-1981
       </p>
     </form>
   );
