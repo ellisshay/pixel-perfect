@@ -12,7 +12,7 @@ export const Route = createFileRoute("/taoyot/$slug")({
     if (!m) throw notFound();
     return (
       <PageLayout>
-        <PageHero eyebrow={m.category} title={m.title} sub={m.intro} />
+        <PageHero theme="growth" eyebrow={m.category} title={m.title} sub={m.intro} />
         <Section>
           <div className="max-w-3xl space-y-5">
             {m.items.map((it, i) => (

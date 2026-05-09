@@ -13,7 +13,7 @@ export const Route = createFileRoute("/blog")({
     const list = f === "הכל" ? guides : guides.filter((g) => g.category === f);
     return (
       <PageLayout>
-        <PageHero
+        <PageHero theme="growth"
           eyebrow="בלוג ומדריכים"
           title="מדריכים פיננסיים פשוטים לאנשים אמיתיים"
           sub="מאמרים, מדריכים, סיפורים וכלים שיעזרו לך להבין כסף, השקעות, חיסכון, נדל״ן, משכנתאות ופנסיה בלי מילים מסובכות ובלי הבטחות ריקות."

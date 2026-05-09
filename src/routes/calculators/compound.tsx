@@ -8,7 +8,7 @@ export const Route = createFileRoute("/calculators/compound")({
   head: () => ({ meta: [{ title: "ריבית דריבית עם דמי ניהול | המפה הפיננסית" }] }),
   component: () => (
     <PageLayout>
-      <PageHero eyebrow="מחשבון" title="ריבית דריבית עם דמי ניהול" />
+      <PageHero theme="investing" eyebrow="מחשבון" title="ריבית דריבית עם דמי ניהול" />
       <Section><CompoundFeesCalc /></Section>
     </PageLayout>
   ),

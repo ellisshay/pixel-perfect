@@ -21,7 +21,7 @@ export const Route = createFileRoute("/calculators")({
     ];
     return (
       <PageLayout>
-        <PageHero
+        <PageHero theme="calc"
           eyebrow="מחשבונים"
           title="מספרים עושים סדר בכסף"
           sub="המחשבונים של המפה הפיננסית עוזרים לך להבין החזר חודשי, תשואה, חיסכון, מס שבח, פנסיה והשקעות, כדי לקבל תמונה ראשונית לפני פנייה לבעל מקצוע."

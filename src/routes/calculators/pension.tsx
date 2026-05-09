@@ -8,7 +8,7 @@ export const Route = createFileRoute("/calculators/pension")({
   head: () => ({ meta: [{ title: "מחשבון פנסיה | המפה הפיננסית" }] }),
   component: () => (
     <PageLayout>
-      <PageHero eyebrow="מחשבון" title="מחשבון פנסיה" />
+      <PageHero theme="planning" eyebrow="מחשבון" title="מחשבון פנסיה" />
       <Section><PensionCalc /></Section>
     </PageLayout>
   ),

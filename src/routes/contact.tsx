@@ -8,7 +8,7 @@ export const Route = createFileRoute("/contact")({
   head: () => ({ meta: [{ title: "צור קשר | המפה הפיננסית" }] }),
   component: () => (
     <PageLayout>
-      <PageHero
+      <PageHero theme="growth"
         eyebrow="צור קשר"
         title="לא בטוח מאיפה להתחיל?"
         sub="השאר פרטים ונעזור להבין מה התחום הנכון עבורך, האם כדאי להתחיל מסדר פיננסי, משכנתא, השקעות, נדל״ן, פנסיה או בדיקה מקצועית."

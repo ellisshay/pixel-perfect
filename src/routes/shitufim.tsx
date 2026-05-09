@@ -60,7 +60,7 @@ export const Route = createFileRoute("/shitufim")({
 function PartnersPage() {
   return (
     <PageLayout>
-      <PageHero
+      <PageHero theme="partners"
         eyebrow="שיתופי פעולה"
         title="הצטרפו לרשת המומחים של המפה הפיננסית"
         sub="אנחנו מחברים בין גולשים שמחפשים פתרונות פיננסיים לבין אנשי מקצוע איכותיים בתחומי משכנתאות, פנסיה, ביטוח, נדל״ן, מיסוי, השקעות וייעוץ עסקי."

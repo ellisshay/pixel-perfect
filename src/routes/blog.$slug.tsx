@@ -11,7 +11,7 @@ export const Route = createFileRoute("/blog/$slug")({
     if (!g) throw notFound();
     return (
       <PageLayout>
-        <PageHero eyebrow={`${g.category} · ${g.readTime}`} title={g.title} sub={g.excerpt} />
+        <PageHero theme="growth" eyebrow={`${g.category} · ${g.readTime}`} title={g.title} sub={g.excerpt} />
         <Section>
           <article className="max-w-3xl prose-base space-y-6 text-foreground">
             <h2 className="text-xl font-bold">למה זה חשוב</h2>
