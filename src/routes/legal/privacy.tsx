@@ -11,7 +11,7 @@ export const Route = createFileRoute("/legal/privacy")({
   ] }),
   component: () => (
     <PageLayout>
-      <PageHero eyebrow="משפטי" title="מדיניות פרטיות" sub="כיצד נאסף, נשמר ומועבר מידע באתר — בהתאם לחוק הגנת הפרטיות, תשמ״א-1981 ולתקנות אבטחת מידע." />
+      <PageHero variant="light" eyebrow="משפטי" title="מדיניות פרטיות" sub="כיצד נאסף, נשמר ומועבר מידע באתר — בהתאם לחוק הגנת הפרטיות, תשמ״א-1981 ולתקנות אבטחת מידע." />
       <Section>
         <LegalDoc>
           <LegalH2>1. בעל השליטה במידע ופרטי קשר</LegalH2>

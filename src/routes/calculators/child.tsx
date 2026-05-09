@@ -8,7 +8,7 @@ export const Route = createFileRoute("/calculators/child")({
   head: () => ({ meta: [{ title: "חיסכון לכל ילד | המפה הפיננסית" }] }),
   component: () => (
     <PageLayout>
-      <PageHero eyebrow="מחשבון" title="חיסכון לכל ילד" />
+      <PageHero theme="investing" eyebrow="מחשבון" title="חיסכון לכל ילד" />
       <Section><ChildSavingsCalc /></Section>
     </PageLayout>
   ),

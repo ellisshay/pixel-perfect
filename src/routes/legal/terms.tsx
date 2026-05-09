@@ -11,7 +11,7 @@ export const Route = createFileRoute("/legal/terms")({
   ] }),
   component: () => (
     <PageLayout>
-      <PageHero eyebrow="משפטי" title="תנאי שימוש" sub="קראו בעיון לפני שימוש באתר. השימוש מהווה הסכמה לתנאים." />
+      <PageHero variant="light" eyebrow="משפטי" title="תנאי שימוש" sub="קראו בעיון לפני שימוש באתר. השימוש מהווה הסכמה לתנאים." />
       <Section>
         <LegalDoc>
           <LegalH2>1. כללי וקבלת התנאים</LegalH2>

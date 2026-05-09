@@ -8,7 +8,7 @@ export const Route = createFileRoute("/calculators/realestate")({
   head: () => ({ meta: [{ title: "השקעת נדל״ן | המפה הפיננסית" }] }),
   component: () => (
     <PageLayout>
-      <PageHero eyebrow="מחשבון" title="השקעת נדל״ן" />
+      <PageHero theme="realestate" eyebrow="מחשבון" title="השקעת נדל״ן" />
       <Section><RealEstateCalc /></Section>
     </PageLayout>
   ),

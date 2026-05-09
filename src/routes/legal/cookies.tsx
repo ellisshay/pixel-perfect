@@ -63,7 +63,7 @@ export const Route = createFileRoute("/legal/cookies")({
   ] }),
   component: () => (
     <PageLayout>
-      <PageHero eyebrow="משפטי" title="מדיניות עוגיות (Cookies)"
+      <PageHero variant="light" eyebrow="משפטי" title="מדיניות עוגיות (Cookies)"
         sub="פירוט עוגיות, פיקסלים וכלי מדידה באתר — וניהול הסכמה מלאה לפי חוק הגנת הפרטיות בישראל." />
       <Section>
         <LegalDoc>

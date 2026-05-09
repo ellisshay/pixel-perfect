@@ -15,7 +15,7 @@ export const Route = createFileRoute("/taoyot")({
     const list = f === "הכל" ? mistakes : mistakes.filter((m) => m.category === f);
     return (
       <PageLayout>
-        <PageHero
+        <PageHero theme="growth"
           eyebrow="טעויות נפוצות"
           title="הטעויות הקטנות שעולות הרבה כסף"
           sub="רוב האנשים לא נופלים בגלל החלטה אחת גדולה, אלא בגלל רצף החלטות קטנות בלי בדיקה. כאן תלמד מה לבדוק לפני משכנתא, השקעה, ביטוח, פנסיה או עסקת נדל״ן."

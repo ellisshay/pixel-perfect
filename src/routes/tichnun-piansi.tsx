@@ -14,7 +14,7 @@ export const Route = createFileRoute("/tichnun-piansi")({
     <PageLayout>
       <TopicPage
         hero={{
-          eyebrow: "תכנון פיננסי",
+          theme: "planning", eyebrow: "תכנון פיננסי",
           title: "לפני שמשקיעים, עושים סדר",
           sub: "צמיחה פיננסית מתחילה בהבנה של הכנסות, הוצאות, חובות, חסכונות, קרן חירום ויעדים. בלי סדר, גם השקעה טובה יכולה להפוך ללחץ.",
           ctas: [

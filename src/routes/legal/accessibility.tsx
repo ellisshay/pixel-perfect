@@ -11,7 +11,7 @@ export const Route = createFileRoute("/legal/accessibility")({
   ] }),
   component: () => (
     <PageLayout>
-      <PageHero eyebrow="משפטי" title="הצהרת נגישות" sub="מחויבות מלאה להנגשת התוכן והכלים לכלל המשתמשים — לרבות אנשים עם מוגבלות." />
+      <PageHero variant="light" eyebrow="משפטי" title="הצהרת נגישות" sub="מחויבות מלאה להנגשת התוכן והכלים לכלל המשתמשים — לרבות אנשים עם מוגבלות." />
       <Section>
         <LegalDoc>
           <LegalH2>1. מחויבות לנגישות</LegalH2>

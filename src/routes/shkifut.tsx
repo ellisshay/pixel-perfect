@@ -7,7 +7,7 @@ export const Route = createFileRoute("/shkifut")({
   head: () => ({ meta: [{ title: "שקיפות ואתיקה | המפה הפיננסית" }] }),
   component: () => (
     <PageLayout>
-      <PageHero eyebrow="שקיפות" title="שקיפות ואתיקה" sub="אנחנו מאמינים שהאמון נבנה רק כשהכל גלוי." />
+      <PageHero theme="growth" eyebrow="שקיפות" title="שקיפות ואתיקה" sub="אנחנו מאמינים שהאמון נבנה רק כשהכל גלוי." />
       <Section>
         <div className="max-w-3xl space-y-4 text-foreground">
           {[

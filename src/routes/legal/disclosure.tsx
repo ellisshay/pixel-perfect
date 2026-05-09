@@ -11,7 +11,7 @@ export const Route = createFileRoute("/legal/disclosure")({
   ] }),
   component: () => (
     <PageLayout>
-      <PageHero eyebrow="משפטי" title="גילוי נאות ושקיפות מסחרית" sub="שקיפות מלאה לגבי שיתופי פעולה, תגמול והפניות לשותפים." />
+      <PageHero variant="light" eyebrow="משפטי" title="גילוי נאות ושקיפות מסחרית" sub="שקיפות מלאה לגבי שיתופי פעולה, תגמול והפניות לשותפים." />
       <Section>
         <LegalDoc>
           <LegalH2>1. תקציר הגילוי</LegalH2>
