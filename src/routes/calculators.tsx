@@ -3,7 +3,7 @@ import { PageLayout } from "@/components/layout/PageLayout";
 import { PageHero } from "@/components/layout/PageHero";
 import { Section, SectionHeader, Disclaimer } from "@/components/layout/Section";
 import { LeadForm } from "@/components/sections/LeadForm";
-import { Calculator, TrendingUp, PiggyBank, HeartPulse, Building2, Baby, ArrowLeft, Sparkles } from "lucide-react";
+import { Calculator, TrendingUp, PiggyBank, HeartPulse, Building2, Baby, ArrowLeft, Sparkles, Wallet, Percent } from "lucide-react";
 
 export const Route = createFileRoute("/calculators")({
   head: () => ({ meta: [{ title: "מחשבונים חכמים | המפה הפיננסית" }, { name: "description", content: "6 מחשבונים פיננסיים: משכנתא, השקעות, ריבית דריבית, מצב משפחתי, נדל״ן וחיסכון לילדים." }]}),
@@ -12,8 +12,11 @@ export const Route = createFileRoute("/calculators")({
       { to: "/calculators/family" as const, icon: HeartPulse, t: "מצב פיננסי משפחתי", d: "תמונת מצב מלאה: עודף, נכסים, חובות ושלב במפה." },
       { to: "/calculators/mortgage" as const, icon: Calculator, t: "מחשבון משכנתא", d: "החזר חודשי, ריבית כוללת ויחס החזר להכנסה." },
       { to: "/calculators/invest" as const, icon: TrendingUp, t: "השקעות", d: "צמיחת הון לאורך זמן עם הפקדה חודשית." },
-      { to: "/calculators/compound" as const, icon: PiggyBank, t: "ריבית דריבית עם דמי ניהול", d: "כמה דמי ניהול 'אוכלים' לכם לאורך השנים." },
+      { to: "/calculators/monthly" as const, icon: Wallet, t: "השקעה חודשית", d: "כמה הופך הסכום החודשי הקטן שלך לאורך השנים." },
+      { to: "/calculators/fees" as const, icon: Percent, t: "דמי ניהול", d: "השוואה בין דמי הניהול שלך לחלופה זולה יותר." },
+      { to: "/calculators/compound" as const, icon: PiggyBank, t: "ריבית דריבית עם דמי ניהול", d: "סימולציה משולבת של תשואה ועמלות." },
       { to: "/calculators/realestate" as const, icon: Building2, t: "השקעת נדל״ן", d: "תזרים, תשואה ויחס מימון לעסקה." },
+      { to: "/calculators/pension" as const, icon: TrendingUp, t: "מחשבון פנסיה", d: "צבירה צפויה בגיל פרישה ופער מהמשכורת." },
       { to: "/calculators/child" as const, icon: Baby, t: "חיסכון לכל ילד", d: "סכום צפוי בגיל היעד אחרי דמי ניהול." },
     ];
     return (
