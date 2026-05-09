@@ -35,6 +35,7 @@ import { Route as CalculatorsPensionRouteImport } from './routes/calculators/pen
 import { Route as CalculatorsMortgageRouteImport } from './routes/calculators/mortgage'
 import { Route as CalculatorsMonthlyRouteImport } from './routes/calculators/monthly'
 import { Route as CalculatorsInvestRouteImport } from './routes/calculators/invest'
+import { Route as CalculatorsFeesRouteImport } from './routes/calculators/fees'
 import { Route as CalculatorsFamilyRouteImport } from './routes/calculators/family'
 import { Route as CalculatorsCompoundRouteImport } from './routes/calculators/compound'
 import { Route as CalculatorsChildRouteImport } from './routes/calculators/child'
@@ -171,6 +172,11 @@ const CalculatorsInvestRoute = CalculatorsInvestRouteImport.update({
   path: '/invest',
   getParentRoute: () => CalculatorsRoute,
 } as any)
+const CalculatorsFeesRoute = CalculatorsFeesRouteImport.update({
+  id: '/fees',
+  path: '/fees',
+  getParentRoute: () => CalculatorsRoute,
+} as any)
 const CalculatorsFamilyRoute = CalculatorsFamilyRouteImport.update({
   id: '/family',
   path: '/family',
@@ -218,6 +224,7 @@ export interface FileRoutesByFullPath {
   '/calculators/child': typeof CalculatorsChildRoute
   '/calculators/compound': typeof CalculatorsCompoundRoute
   '/calculators/family': typeof CalculatorsFamilyRoute
+  '/calculators/fees': typeof CalculatorsFeesRoute
   '/calculators/invest': typeof CalculatorsInvestRoute
   '/calculators/monthly': typeof CalculatorsMonthlyRoute
   '/calculators/mortgage': typeof CalculatorsMortgageRoute
@@ -251,6 +258,7 @@ export interface FileRoutesByTo {
   '/calculators/child': typeof CalculatorsChildRoute
   '/calculators/compound': typeof CalculatorsCompoundRoute
   '/calculators/family': typeof CalculatorsFamilyRoute
+  '/calculators/fees': typeof CalculatorsFeesRoute
   '/calculators/invest': typeof CalculatorsInvestRoute
   '/calculators/monthly': typeof CalculatorsMonthlyRoute
   '/calculators/mortgage': typeof CalculatorsMortgageRoute
@@ -285,6 +293,7 @@ export interface FileRoutesById {
   '/calculators/child': typeof CalculatorsChildRoute
   '/calculators/compound': typeof CalculatorsCompoundRoute
   '/calculators/family': typeof CalculatorsFamilyRoute
+  '/calculators/fees': typeof CalculatorsFeesRoute
   '/calculators/invest': typeof CalculatorsInvestRoute
   '/calculators/monthly': typeof CalculatorsMonthlyRoute
   '/calculators/mortgage': typeof CalculatorsMortgageRoute
@@ -320,6 +329,7 @@ export interface FileRouteTypes {
     | '/calculators/child'
     | '/calculators/compound'
     | '/calculators/family'
+    | '/calculators/fees'
     | '/calculators/invest'
     | '/calculators/monthly'
     | '/calculators/mortgage'
@@ -353,6 +363,7 @@ export interface FileRouteTypes {
     | '/calculators/child'
     | '/calculators/compound'
     | '/calculators/family'
+    | '/calculators/fees'
     | '/calculators/invest'
     | '/calculators/monthly'
     | '/calculators/mortgage'
@@ -386,6 +397,7 @@ export interface FileRouteTypes {
     | '/calculators/child'
     | '/calculators/compound'
     | '/calculators/family'
+    | '/calculators/fees'
     | '/calculators/invest'
     | '/calculators/monthly'
     | '/calculators/mortgage'
@@ -607,6 +619,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CalculatorsInvestRouteImport
       parentRoute: typeof CalculatorsRoute
     }
+    '/calculators/fees': {
+      id: '/calculators/fees'
+      path: '/fees'
+      fullPath: '/calculators/fees'
+      preLoaderRoute: typeof CalculatorsFeesRouteImport
+      parentRoute: typeof CalculatorsRoute
+    }
     '/calculators/family': {
       id: '/calculators/family'
       path: '/family'
@@ -659,6 +678,7 @@ interface CalculatorsRouteChildren {
   CalculatorsChildRoute: typeof CalculatorsChildRoute
   CalculatorsCompoundRoute: typeof CalculatorsCompoundRoute
   CalculatorsFamilyRoute: typeof CalculatorsFamilyRoute
+  CalculatorsFeesRoute: typeof CalculatorsFeesRoute
   CalculatorsInvestRoute: typeof CalculatorsInvestRoute
   CalculatorsMonthlyRoute: typeof CalculatorsMonthlyRoute
   CalculatorsMortgageRoute: typeof CalculatorsMortgageRoute
@@ -670,6 +690,7 @@ const CalculatorsRouteChildren: CalculatorsRouteChildren = {
   CalculatorsChildRoute: CalculatorsChildRoute,
   CalculatorsCompoundRoute: CalculatorsCompoundRoute,
   CalculatorsFamilyRoute: CalculatorsFamilyRoute,
+  CalculatorsFeesRoute: CalculatorsFeesRoute,
   CalculatorsInvestRoute: CalculatorsInvestRoute,
   CalculatorsMonthlyRoute: CalculatorsMonthlyRoute,
   CalculatorsMortgageRoute: CalculatorsMortgageRoute,
