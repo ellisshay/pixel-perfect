@@ -14,7 +14,7 @@ export const Route = createFileRoute("/shuk-hahon")({
     <PageLayout>
       <TopicPage
         hero={{
-          eyebrow: "שוק ההון",
+          theme: "investing", eyebrow: "שוק ההון",
           title: "שוק ההון לא חייב להיות מפחיד",
           sub: "למד את הבסיס, הבן את ההבדל בין השקעה למסחר, גלה מה זה מדדים, תיק מנוהל, קרנות סל וניהול סיכון, ובחר אם מתאים לך להתחיל לבד או עם ליווי.",
           ctas: [

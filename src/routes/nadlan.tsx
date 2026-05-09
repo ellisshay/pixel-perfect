@@ -14,7 +14,7 @@ export const Route = createFileRoute("/nadlan")({
     <PageLayout>
       <TopicPage
         hero={{
-          eyebrow: "נדל״ן",
+          theme: "realestate", eyebrow: "נדל״ן",
           title: "נדל״ן זה לא רק דירה להשקעה",
           sub: "לפני שקונים נכס, חשוב להבין את ההבדל בין מגורים, מסחרי, קרקע חקלאית, נדל״ן בחו״ל ונדל״ן תיירותי. לכל מסלול יש סיכון, מימון, מיסוי ותזרים משלו.",
           ctas: [

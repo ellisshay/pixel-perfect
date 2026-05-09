@@ -14,7 +14,7 @@ export const Route = createFileRoute("/mashkantaot")({
     <PageLayout>
       <TopicPage
         hero={{
-          eyebrow: "משכנתאות והלוואות",
+          theme: "mortgage", eyebrow: "משכנתאות והלוואות",
           title: "המשכנתא שלך יכולה להיות ההחלטה הכי יקרה בחיים",
           sub: "בדוק החזר חודשי, מסלולים, ריבית, מחזור משכנתא, איחוד הלוואות והאם יש דרך לשפר את המצב לפני שאתה חותם או ממשיך לשלם בלי לבדוק.",
           ctas: [
