@@ -3,6 +3,7 @@ import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { CookieConsent } from "@/components/legal/CookieConsent";
 import { StickyCta } from "@/components/premium/StickyCta";
+import { ExitIntent } from "@/components/premium/ExitIntent";
 
 export function PageLayout({ children }: { children: ReactNode }) {
   return (
@@ -13,6 +14,7 @@ export function PageLayout({ children }: { children: ReactNode }) {
       <Footer />
       <StickyCta />
       <CookieConsent />
+      <ExitIntent />
     </div>
   );
 }
