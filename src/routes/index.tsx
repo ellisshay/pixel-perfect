@@ -174,7 +174,7 @@ function Index() {
         <SectionHeader eyebrow="שלושת המסלולים המרכזיים" title="לאן רוצים להתקדם?" />
         <div className="mt-10 grid md:grid-cols-3 gap-5">
           {[
-            { to: "/shuk-hahon", icon: LineChart, t: "שוק ההון והכפלת הון", d: "ריבית דריבית, דמי ניהול, מסחר עצמאי, IRA, קרנות סל." },
+            { to: "/shuk-hahon", icon: LineChart, t: "שוק ההון וצמיחה ארוכת טווח", d: "ריבית דריבית, דמי ניהול, מסחר עצמאי, IRA, קרנות סל." },
             { to: "/nadlan", icon: Building2, t: "נדל״ן בארץ ובחו״ל", d: "מינוף, תשואה, תזרים, בדיקות חובה וסיכונים אמיתיים." },
             { to: "/tichnun-piansi", icon: Wallet, t: "תכנון פיננסי משפחתי", d: "תזרים, חובות, חיסכון לילדים, פנסיה וחופש פיננסי." },
           ].map((c) => (

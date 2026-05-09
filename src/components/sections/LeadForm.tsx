@@ -146,7 +146,7 @@ export function LeadForm({ defaultDomain, sourcePage, metadata }: {
       </div>
 
       <p className="sm:col-span-2 text-[11px] text-muted-foreground bg-muted/50 border border-border rounded-lg p-3 text-center">
-        🔒 מוגן SSL · חוק הגנת הפרטיות תשמ״א-1981 · מאגר מידע רשום
+        🔒 מוגן SSL · חוק הגנת הפרטיות תשמ״א-1981
       </p>
 
       {serverError && (
