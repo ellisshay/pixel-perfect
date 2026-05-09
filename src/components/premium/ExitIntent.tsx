@@ -1,42 +1,98 @@
-import { useEffect, useState } from "react";
-import { Link, useLocation } from "@tanstack/react-router";
-import { X, Sparkles, ArrowLeft } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { useLocation } from "@tanstack/react-router";
+import { X, ArrowLeft } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
-const STORAGE_KEY = "hamapa_exit_intent_v1";
+const phoneRegex = /^0(5[0-9]|2|3|4|7[2-9]|8|9)[-\s]?\d{7}$/;
+const BLOCKED = /^\/(legal|thank-you|start|contact|login|admin)/;
+
+type Copy = { headline: string; sub: string };
+const COPY_MAP: { match: RegExp; copy: Copy }[] = [
+  { match: /mashkantaot|calculators\/mortgage/, copy: { headline: "רגע לפני שאתה הולך — בדקת כמה אפשר לחסוך על המשכנתא?", sub: "השאר טלפון. נחזור תוך 24 שעות עם בדיקת מיחזור ראשונית — חינם." } },
+  { match: /shuk-hahon|calculators\/(invest|fees|compound)/, copy: { headline: "עוד שנייה — ראית כמה דמי ניהול קטנים שוחקים לך את הפנסיה?", sub: "השאר טלפון ונבדוק יחד את ההשפעה על המצב שלך — ללא עלות." } },
+  { match: /nadlan|calculators\/realestate/, copy: { headline: "לא בטוח שהעסקה משתלמת? בדוק לפני שחותם.", sub: "השאר טלפון ומומחה נדל״ן יבדוק איתך את התזרים — חינם, ללא התחייבות." } },
+];
+const DEFAULT_COPY: Copy = { headline: "רגע לפני שאתה הולך — השאר טלפון.", sub: "נחזור אליך תוך 24 שעות עם כיוון ראשוני. ללא עלות, ללא התחייבות." };
+
+function getCopy(pathname: string): Copy {
+  return COPY_MAP.find(({ match }) => match.test(pathname))?.copy ?? DEFAULT_COPY;
+}
+
+function MiniForm({ sourcePage, onSuccess }: { sourcePage: string; onSuccess: () => void }) {
+  const [phone, setPhone] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const submit = async () => {
+    const trimmed = phone.trim();
+    if (!phoneRegex.test(trimmed)) { setError("מספר לא תקין (למשל 050-1234567)"); return; }
+    setError(null); setLoading(true);
+    const { error: sbErr } = await supabase.from("leads").insert({
+      name: "מבקר אתר", phone: trimmed,
+      email: `${trimmed.replace(/\D/g, "")}@noemail.placeholder`,
+      domain: "general", source_page: sourcePage, source_cta: "exit_intent", privacy_consent: true,
+    });
+    setLoading(false);
+    if (sbErr) { setError("שגיאה — נסה שוב"); return; }
+    onSuccess();
+  };
+
+  return (
+    <div className="mt-5">
+      <div className="flex gap-2">
+        <input
+          type="tel"
+          inputMode="tel"
+          placeholder="050-1234567"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && submit()}
+          className="flex-1 h-11 px-4 rounded-xl border border-input bg-background text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          dir="ltr"
+          autoFocus
+        />
+        <button
+          type="button"
+          onClick={submit}
+          disabled={loading}
+          className="h-11 px-5 rounded-xl text-sm font-bold text-primary-foreground hover:scale-[1.02] transition disabled:opacity-60"
+          style={{ background: "var(--gradient-hero)" }}
+        >
+          {loading ? "שולח…" : "שלח ←"}
+        </button>
+      </div>
+      {error && <p className="mt-2 text-xs text-destructive font-medium">{error}</p>}
+      <p className="mt-3 text-[11px] text-muted-foreground leading-relaxed">
+        ללא התחייבות. לא מוכרים את הפרטים.
+      </p>
+    </div>
+  );
+}
 
 export function ExitIntent() {
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
+  const [done, setDone] = useState(false);
+  const firedRef = useRef(false);
+
+  useEffect(() => { firedRef.current = false; }, [pathname]);
 
   useEffect(() => {
+    if (BLOCKED.test(pathname)) return;
     if (typeof window === "undefined") return;
-    if (/^\/(legal|contact|start|thank-you|login|admin)/.test(pathname)) return;
-    try {
-      if (window.sessionStorage.getItem(STORAGE_KEY)) return;
-    } catch {}
-
-    let armed = false;
-    const armTimer = window.setTimeout(() => { armed = true; }, 8000);
-
-    const trigger = () => {
-      if (!armed || open) return;
+    if (sessionStorage.getItem("exit_intent_shown")) return;
+    const onMouseLeave = (e: MouseEvent) => {
+      if (e.clientY > 20 || firedRef.current) return;
+      firedRef.current = true;
+      sessionStorage.setItem("exit_intent_shown", "1");
       setOpen(true);
-      try { window.sessionStorage.setItem(STORAGE_KEY, "1"); } catch {}
     };
-
-    const onMouseOut = (e: MouseEvent) => {
-      if (e.relatedTarget) return;
-      if (e.clientY <= 0) trigger();
-    };
-
-    document.addEventListener("mouseout", onMouseOut);
-    return () => {
-      window.clearTimeout(armTimer);
-      document.removeEventListener("mouseout", onMouseOut);
-    };
-  }, [pathname, open]);
+    document.addEventListener("mouseleave", onMouseLeave);
+    return () => document.removeEventListener("mouseleave", onMouseLeave);
+  }, [pathname]);
 
   if (!open) return null;
+  const copy = getCopy(pathname);
 
   return (
     <div
@@ -47,60 +103,44 @@ export function ExitIntent() {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-lg rounded-3xl border border-white/10 p-8 md:p-10 text-primary-foreground overflow-hidden animate-fade-up"
-        style={{ background: "var(--gradient-hero)", boxShadow: "var(--shadow-elegant)" }}
+        className="relative w-full max-w-lg rounded-3xl border border-border bg-card text-foreground p-7 md:p-9 animate-fade-up"
+        style={{ boxShadow: "var(--shadow-elegant)" }}
       >
-        <div aria-hidden className="absolute -top-24 -left-24 w-72 h-72 rounded-full opacity-30 blur-3xl"
-          style={{ background: "var(--gradient-gold)" }} />
         <button
+          type="button"
           onClick={() => setOpen(false)}
           aria-label="סגור"
-          className="absolute top-3 left-3 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition"
+          className="absolute top-4 left-4 w-8 h-8 rounded-full flex items-center justify-center text-muted-foreground hover:bg-muted transition"
         >
           <X size={16} />
         </button>
 
-        <div className="relative">
-          <span className="inline-flex items-center gap-2 text-xs font-bold px-3 py-1.5 rounded-full bg-white/10 border border-white/15">
-            <Sparkles size={12} /> רגע לפני שאתה עוזב
-          </span>
-          <h2 className="mt-4 text-2xl md:text-3xl font-extrabold leading-tight">
-            גלה איפה אתה באמת על המפה הפיננסית
-          </h2>
-          <p className="mt-3 text-sm md:text-base text-primary-foreground/80 leading-relaxed">
-            אבחון של 90 שניות. בלי הרשמה, בלי שיחות מכירה. רק תמונת מצב מדויקת ומה הצעד הבא שלך.
-          </p>
+        <div className="inline-flex items-center gap-2 text-[11px] font-bold px-3 py-1.5 rounded-full bg-accent/10 text-primary border border-accent/30">
+          <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+          מומחה פנוי עכשיו
+        </div>
 
-          <div className="mt-6 flex flex-wrap gap-2">
-            <Link
-              to="/start"
-              onClick={() => setOpen(false)}
-              className="inline-flex items-center gap-2 h-12 px-6 rounded-full text-sm font-bold text-accent-foreground hover:scale-[1.02] transition"
-              style={{ background: "var(--gradient-gold)" }}
-            >
-              התחל אבחון <ArrowLeft size={14} />
-            </Link>
+        {done ? (
+          <div className="mt-5 text-center py-4">
+            <div className="mx-auto w-14 h-14 rounded-full flex items-center justify-center text-primary-foreground text-2xl font-black"
+              style={{ background: "var(--gradient-hero)" }}>✓</div>
+            <h3 className="mt-4 text-xl font-extrabold">קיבלנו — תודה!</h3>
+            <p className="mt-2 text-sm text-muted-foreground">נחזור אליך תוך 24 שעות עם כיוון ראשוני.</p>
             <button
+              type="button"
               onClick={() => setOpen(false)}
-              className="h-12 px-5 rounded-full text-sm font-bold bg-white/10 hover:bg-white/20 transition border border-white/15"
+              className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-primary"
             >
-              לא עכשיו
+              המשך לגלוש <ArrowLeft size={14} />
             </button>
           </div>
-
-          <div className="mt-6 grid grid-cols-3 gap-3 text-center">
-            {[
-              { k: "90 שניות", v: "אבחון מהיר" },
-              { k: "0 ₪", v: "ללא עלות" },
-              { k: "100%", v: "אנונימי" },
-            ].map((s) => (
-              <div key={s.k} className="rounded-2xl bg-white/5 border border-white/10 p-3">
-                <div className="text-base font-extrabold">{s.k}</div>
-                <div className="text-[11px] text-primary-foreground/70">{s.v}</div>
-              </div>
-            ))}
-          </div>
-        </div>
+        ) : (
+          <>
+            <h3 className="mt-4 text-xl md:text-2xl font-extrabold leading-tight">{copy.headline}</h3>
+            <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{copy.sub}</p>
+            <MiniForm sourcePage={pathname} onSuccess={() => setDone(true)} />
+          </>
+        )}
       </div>
     </div>
   );
