@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, AlertTriangle, ShieldCheck, Sparkles } from "lucide-react";
-import { PageHero } from "@/components/layout/PageHero";
+import { ArrowLeft, AlertTriangle, ShieldCheck, Sparkles, CheckCircle2, Activity } from "lucide-react";
 import { Section, SectionHeader, Disclaimer } from "@/components/layout/Section";
 import { LeadForm } from "./LeadForm";
 
@@ -30,16 +29,14 @@ type TopicProps = {
 export function TopicPage({ hero, valueCards, converter, mistakes, leadDomain, bottomCta, guides }: TopicProps) {
   return (
     <>
-      <PageHero
+      <PremiumCategoryHero
         eyebrow={hero.eyebrow}
         title={hero.title}
         sub={hero.sub}
-        ctas={
-          hero.ctas ?? [
-            { to: "/start", label: "התחל אבחון", variant: "primary" },
-            { to: "/calculators", label: "פתח מחשבון", variant: "ghost" },
-          ]
-        }
+        ctas={hero.ctas ?? [
+          { to: "/start", label: "התחל אבחון", variant: "primary" },
+          { to: "/calculators", label: "פתח מחשבון", variant: "ghost" },
+        ]}
         actions={hero.actions}
       />
 
@@ -47,12 +44,25 @@ export function TopicPage({ hero, valueCards, converter, mistakes, leadDomain, b
       <Section>
         <div className="grid md:grid-cols-3 gap-5">
           {valueCards.map((v, i) => (
-            <div key={i} className="p-6 rounded-3xl border border-primary/10 bg-white" style={{ boxShadow: "var(--shadow-soft)" }}>
-              <span className="w-11 h-11 rounded-xl flex items-center justify-center text-primary-foreground" style={{ background: "var(--gradient-hero)" }}>
-                {v.icon ? <v.icon size={20} /> : <ShieldCheck size={20} />}
-              </span>
-              <h3 className="mt-4 text-lg font-black text-primary">{v.t}</h3>
-              <p className="mt-2 text-sm text-foreground/75 leading-relaxed">{v.d}</p>
+            <div
+              key={i}
+              className="group relative overflow-hidden p-7 rounded-3xl border border-primary/10 bg-white hover:-translate-y-1 hover:border-primary/25 transition-all duration-500"
+              style={{ boxShadow: "var(--shadow-soft)" }}
+            >
+              <div
+                className="absolute -top-20 -right-20 w-48 h-48 rounded-full blur-3xl opacity-0 group-hover:opacity-60 transition-opacity duration-500"
+                style={{ background: i % 2 === 0 ? "oklch(0.62 0.13 240 / 0.35)" : "oklch(0.7 0.14 165 / 0.35)" }}
+              />
+              <div className="relative">
+                <span
+                  className="w-12 h-12 rounded-2xl flex items-center justify-center text-accent-foreground transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
+                  style={{ background: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}
+                >
+                  {v.icon ? <v.icon size={22} /> : <ShieldCheck size={22} />}
+                </span>
+                <h3 className="mt-5 text-lg font-black text-primary">{v.t}</h3>
+                <p className="mt-2 text-sm text-foreground/75 leading-relaxed">{v.d}</p>
+              </div>
             </div>
           ))}
         </div>
