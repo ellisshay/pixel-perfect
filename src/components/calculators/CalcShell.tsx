@@ -1,4 +1,6 @@
 import { ReactNode, useState } from "react";
+import { Link } from "@tanstack/react-router";
+import { ArrowLeft, Phone, RefreshCw } from "lucide-react";
 import { Disclaimer } from "@/components/layout/Section";
 
 export function CalcShell({ title, desc, inputs, results, footer, chart }: {
@@ -44,6 +46,38 @@ export function CalcShell({ title, desc, inputs, results, footer, chart }: {
           <div className="w-full h-64 md:h-72">{chart}</div>
         </div>
       )}
+      <div
+        className="lg:col-span-2 rounded-2xl border border-primary/15 bg-gradient-to-l from-secondary/60 to-white p-6 md:p-8"
+        style={{ boxShadow: "var(--shadow-soft)" }}
+        aria-label="מה עושים עם הנתון הזה"
+      >
+        <h3 className="text-xl md:text-2xl font-black text-primary">מה עושים עם הנתון הזה?</h3>
+        <p className="mt-2 text-sm md:text-base text-foreground/75 leading-relaxed max-w-2xl">
+          התוצאה היא סימולציה ראשונית בלבד ואינה ייעוץ אישי. כדי להבין אם הנתון מתאים למצב שלך, אפשר להמשיך לבדיקה מסודרת או להשאיר פרטים לחיבור עם בעל מקצוע מתאים.
+        </p>
+        <div className="mt-5 flex flex-wrap gap-3">
+          <Link
+            to="/start"
+            className="inline-flex items-center gap-2 h-12 px-6 rounded-full font-bold text-sm text-accent-foreground hover:scale-[1.02] transition"
+            style={{ background: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}
+          >
+            קבל כיוון ראשוני <ArrowLeft size={14} />
+          </Link>
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 h-12 px-6 rounded-full font-bold text-sm text-primary-foreground hover:scale-[1.02] transition"
+            style={{ background: "var(--gradient-hero)" }}
+          >
+            <Phone size={14} /> דבר עם בעל מקצוע
+          </Link>
+          <Link
+            to="/calculators"
+            className="inline-flex items-center gap-2 h-12 px-6 rounded-full font-bold text-sm text-primary border border-primary/20 bg-white hover:bg-primary/5 transition"
+          >
+            <RefreshCw size={14} /> חזור למחשבונים
+          </Link>
+        </div>
+      </div>
       <div className="lg:col-span-2"><Disclaimer /></div>
     </div>
   );
