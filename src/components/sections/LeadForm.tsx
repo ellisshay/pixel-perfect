@@ -43,7 +43,7 @@ export function LeadForm({ defaultDomain, sourcePage, metadata }: {
   const [submitting, setSubmitting] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
 
-  const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({
+  const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: {
       domain: defaultDomain ?? "",
@@ -79,6 +79,16 @@ export function LeadForm({ defaultDomain, sourcePage, metadata }: {
 
   const inp = "w-full h-11 px-4 rounded-xl border border-input bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
   const errCls = "text-xs text-destructive mt-1";
+  const domainValue = watch("domain");
+  const capitalValue = watch("capital_range");
+  const stageValue = watch("decision_stage");
+
+  const choiceButton = (active: boolean) =>
+    `h-11 rounded-xl border px-3 text-sm font-bold transition-all ${
+      active
+        ? "border-accent bg-accent/10 text-primary shadow-sm"
+        : "border-input bg-background text-foreground/75 hover:border-accent/40 hover:bg-accent/5"
+    }`;
 
   return (
     <form
@@ -105,26 +115,38 @@ export function LeadForm({ defaultDomain, sourcePage, metadata }: {
       </div>
       <div>
         <label className="block text-sm font-semibold mb-1.5">תחום עניין <span aria-hidden className="text-destructive">*</span></label>
-        <select className={inp} aria-invalid={!!errors.domain} {...register("domain")}>
-          <option value="">בחרו תחום…</option>
-          {DOMAINS.map((d) => <option key={d.slug} value={d.slug}>{d.title}</option>)}
-        </select>
+        <input type="hidden" {...register("domain")} />
+        <div className="grid grid-cols-2 gap-2" aria-invalid={!!errors.domain}>
+          {DOMAINS.slice(0, 4).map((d) => (
+            <button key={d.slug} type="button" className={choiceButton(domainValue === d.slug)} onClick={() => setValue("domain", d.slug, { shouldValidate: true, shouldDirty: true })}>
+              {d.title}
+            </button>
+          ))}
+        </div>
         {errors.domain && <p role="alert" className={errCls}>{errors.domain.message}</p>}
       </div>
       <div>
         <label className="block text-sm font-semibold mb-1.5">הון עצמי זמין <span aria-hidden className="text-destructive">*</span></label>
-        <select className={inp} aria-invalid={!!errors.capital_range} {...register("capital_range")}>
-          <option value="">בחרו…</option>
-          {CAPITAL.map((c) => <option key={c} value={c}>{c}</option>)}
-        </select>
+        <input type="hidden" {...register("capital_range")} />
+        <div className="grid grid-cols-1 gap-2" aria-invalid={!!errors.capital_range}>
+          {CAPITAL.map((c) => (
+            <button key={c} type="button" className={choiceButton(capitalValue === c)} onClick={() => setValue("capital_range", c, { shouldValidate: true, shouldDirty: true })}>
+              {c}
+            </button>
+          ))}
+        </div>
         {errors.capital_range && <p role="alert" className={errCls}>{errors.capital_range.message}</p>}
       </div>
       <div className="sm:col-span-2">
         <label className="block text-sm font-semibold mb-1.5">שלב ההחלטה</label>
-        <select className={inp} {...register("decision_stage")}>
-          <option value="">בחרו…</option>
-          {STAGES.map((s) => <option key={s} value={s}>{s}</option>)}
-        </select>
+        <input type="hidden" {...register("decision_stage")} />
+        <div className="grid sm:grid-cols-3 gap-2">
+          {STAGES.map((s) => (
+            <button key={s} type="button" className={choiceButton(stageValue === s)} onClick={() => setValue("decision_stage", s, { shouldDirty: true })}>
+              {s}
+            </button>
+          ))}
+        </div>
       </div>
 
       <div className="sm:col-span-2 space-y-3 mt-2">

@@ -1,8 +1,26 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, CheckCircle2, Sparkles, Activity } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Sparkles } from "lucide-react";
+import mortgageHero from "@/assets/hero-mortgage-premium.jpg";
+import realestateHero from "@/assets/hero-realestate-premium.jpg";
+import investingHero from "@/assets/hero-investing-premium.jpg";
+import planningHero from "@/assets/hero-planning-premium.jpg";
 
 type Cta = { to: any; label: string; variant?: "primary" | "ghost" };
 export type HeroTheme = "growth" | "mortgage" | "realestate" | "investing" | "planning" | "calc" | "legal" | "partners";
+
+const heroImages: Partial<Record<HeroTheme, string>> = {
+  mortgage: mortgageHero,
+  realestate: realestateHero,
+  investing: investingHero,
+  planning: planningHero,
+};
+
+const heroSignals: Record<string, string[]> = {
+  mortgage: ["שליטה בהחזר", "מסלולים ברורים", "פחות לחץ חודשי"],
+  realestate: ["תזרים נקי", "תשואה נטו", "סיכון לפני חתימה"],
+  investing: ["צמיחה ארוכה", "דמי ניהול", "רמת סיכון"],
+  planning: ["סדר בתזרים", "יעדים קדימה", "שקט משפחתי"],
+};
 
 export function PageHero({
   eyebrow,
@@ -23,49 +41,51 @@ export function PageHero({
 }) {
   const hasSide = !!actions && actions.items.length > 0;
   if (variant === "light") return <LightHero eyebrow={eyebrow} title={title} sub={sub} ctas={ctas} actions={actions} hasSide={hasSide} />;
+  const image = heroImages[theme];
+  const signals = heroSignals[theme] ?? ["מיפוי מצב", "בדיקת מספרים", "צעד הבא"];
 
   return (
-    <section className="relative overflow-hidden text-primary-foreground" style={{ background: "var(--gradient-hero)" }}>
-      <div className="absolute inset-0 opacity-70" style={{ background: "var(--gradient-mesh)" }} />
-      <svg className="absolute inset-0 w-full h-full opacity-[0.07]" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-        <defs>
-          <pattern id="ph-grid" width="48" height="48" patternUnits="userSpaceOnUse">
-            <path d="M48 0H0V48" fill="none" stroke="white" strokeWidth="0.5" />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#ph-grid)" />
-      </svg>
+    <section className="relative min-h-[640px] overflow-hidden text-primary-foreground isolate" style={{ background: "var(--gradient-hero)" }}>
+      {image ? (
+        <img src={image} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover" width={1600} height={900} />
+      ) : (
+        <ThemeArt theme={theme} />
+      )}
+      <div className="absolute inset-0 bg-gradient-to-l from-primary/95 via-primary/72 to-primary/28" />
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/15 via-transparent to-primary/90" />
+      <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-background to-transparent" />
 
-      <ThemeArt theme={theme} />
-
-      <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full opacity-25 blur-3xl" style={{ background: "var(--gradient-gold)" }} />
-      <div className="absolute -bottom-40 -left-32 w-[500px] h-[500px] rounded-full opacity-20 blur-3xl" style={{ background: "radial-gradient(circle, oklch(0.62 0.13 240) 0%, transparent 70%)" }} />
-
-      <div className={`relative container mx-auto px-6 pt-20 pb-20 md:pt-24 md:pb-24 ${hasSide ? "grid lg:grid-cols-12 gap-10 items-center" : ""}`}>
-        <div className={hasSide ? "lg:col-span-7 animate-fade-in" : "max-w-3xl animate-fade-in"}>
+      <div className="relative container mx-auto px-6 pt-20 pb-16 md:pt-24 md:pb-20">
+        <div className="grid min-h-[520px] lg:grid-cols-[minmax(0,0.95fr)_minmax(360px,0.62fr)] gap-10 items-center">
+        <div className="animate-fade-in max-w-3xl lg:justify-self-end text-right">
           {eyebrow && (
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold tracking-[0.2em] uppercase backdrop-blur-xl border border-white/15 bg-white/5">
-              <span className="relative flex w-2 h-2">
-                <span className="absolute inset-0 rounded-full bg-accent animate-ping opacity-75" />
-                <span className="relative w-2 h-2 rounded-full bg-accent" />
-              </span>
+            <span className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/15 bg-primary-foreground/[0.08] px-4 py-2 text-[11px] font-black tracking-[0.18em] backdrop-blur-2xl">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_18px_var(--accent)]" />
               {eyebrow}
             </span>
           )}
-          <h1 className="mt-5 text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08]">
-            <span className="bg-clip-text text-transparent" style={{ backgroundImage: "var(--gradient-gold)" }}>{title}</span>
+          <h1 className="mt-6 text-4xl md:text-6xl lg:text-7xl font-black leading-[1.02] text-primary-foreground max-w-4xl">
+            {title}
           </h1>
-          {sub && <p className="mt-5 text-base md:text-lg text-primary-foreground/75 max-w-2xl leading-relaxed">{sub}</p>}
+          <div className="mt-6 h-1 w-24 rounded-full bg-accent shadow-[0_0_32px_var(--accent)] ms-auto" />
+          {sub && <p className="mt-6 text-base md:text-xl text-primary-foreground/78 max-w-2xl leading-relaxed ms-auto">{sub}</p>}
+          <div className="mt-7 flex flex-wrap justify-start lg:justify-end gap-2.5">
+            {signals.map((signal) => (
+              <span key={signal} className="rounded-full border border-primary-foreground/12 bg-primary-foreground/[0.07] px-4 py-2 text-xs font-bold backdrop-blur-xl">
+                {signal}
+              </span>
+            ))}
+          </div>
           {ctas && ctas.length > 0 && (
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-9 flex flex-wrap justify-start lg:justify-end gap-3">
               {ctas.map((c) => (
                 <Link
                   key={c.label}
                   to={c.to}
                   className={
                     c.variant === "ghost"
-                      ? "inline-flex items-center gap-2 h-12 px-6 rounded-full font-bold text-sm border border-white/20 bg-white/10 backdrop-blur-xl hover:bg-white/15 transition-all"
-                      : "group inline-flex items-center gap-2 h-12 px-7 rounded-full font-bold text-sm text-accent-foreground hover:scale-[1.03] transition-all"
+                      ? "inline-flex h-[3.25rem] items-center gap-2 rounded-full border border-primary-foreground/18 bg-primary-foreground/[0.08] px-6 text-sm font-black backdrop-blur-2xl transition-all hover:bg-primary-foreground/[0.13]"
+                      : "group inline-flex h-[3.25rem] items-center gap-2 rounded-full px-8 text-sm font-black text-accent-foreground transition-all hover:-translate-y-0.5"
                   }
                   style={c.variant === "ghost" ? undefined : { background: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}
                 >
@@ -76,28 +96,31 @@ export function PageHero({
           )}
         </div>
 
-        {hasSide && (
-          <div className="lg:col-span-5 animate-fade-in">
-            <div className="relative rounded-3xl border border-white/15 bg-white/[0.06] backdrop-blur-2xl p-6 md:p-7" style={{ boxShadow: "0 30px 60px -25px rgba(0,0,0,0.45)" }}>
-              <div className="absolute -top-3 right-6 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold tracking-wider uppercase text-accent-foreground" style={{ background: "var(--gradient-gold)" }}>
-                <Activity size={12} /> {actions!.title ?? "מה עושים עכשיו"}
+        {hasSide && actions && (
+          <div className="animate-fade-in lg:justify-self-start w-full max-w-md">
+            <div className="relative overflow-hidden rounded-[2rem] border border-primary-foreground/14 bg-primary/[0.32] p-5 backdrop-blur-2xl" style={{ boxShadow: "0 34px 90px -42px oklch(0 0 0 / 0.82)" }}>
+              <div className="absolute inset-0 bg-gradient-to-br from-primary-foreground/[0.10] via-transparent to-accent/[0.10]" />
+              <div className="relative flex items-center justify-between gap-4 border-b border-primary-foreground/10 pb-4">
+                <div className="text-xs font-black tracking-[0.18em] text-primary-foreground/58">{actions.title ?? "מה עושים עכשיו"}</div>
+                <Sparkles size={16} className="text-accent" />
               </div>
-              <ul className="mt-3 space-y-2.5">
+              <ol className="relative mt-4 space-y-3">
                 {actions!.items.map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3 p-3 rounded-2xl border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] transition-colors">
-                    <CheckCircle2 size={18} className="mt-0.5 text-accent shrink-0" />
-                    <span className="text-sm font-semibold leading-snug">{item}</span>
+                  <li key={idx} className="group grid grid-cols-[auto_1fr] gap-3 rounded-2xl border border-primary-foreground/10 bg-primary-foreground/[0.055] p-3.5 transition-all hover:bg-primary-foreground/[0.095]">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-accent/15 text-xs font-black text-accent ring-1 ring-accent/25">{idx + 1}</span>
+                    <span className="self-center text-sm font-bold leading-snug text-primary-foreground/86">{item}</span>
                   </li>
                 ))}
-              </ul>
-              {actions!.cta && (
-                <Link to={actions!.cta.to} className="mt-5 w-full inline-flex items-center justify-center gap-2 h-12 rounded-full text-sm font-bold text-accent-foreground hover:scale-[1.02] transition" style={{ background: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}>
+              </ol>
+              {actions.cta && (
+                <Link to={actions.cta.to} className="relative mt-5 inline-flex h-12 w-full items-center justify-center gap-2 rounded-full text-sm font-black text-accent-foreground transition hover:-translate-y-0.5" style={{ background: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}>
                   {actions!.cta.label} <ArrowLeft size={14} />
                 </Link>
               )}
             </div>
           </div>
         )}
+        </div>
       </div>
     </section>
   );
