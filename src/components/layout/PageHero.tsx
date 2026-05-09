@@ -84,8 +84,8 @@ export function PageHero({
                   to={c.to}
                   className={
                     c.variant === "ghost"
-                      ? "inline-flex h-13 items-center gap-2 rounded-full border border-primary-foreground/18 bg-primary-foreground/[0.08] px-6 text-sm font-black backdrop-blur-2xl transition-all hover:bg-primary-foreground/[0.13]"
-                      : "group inline-flex h-13 items-center gap-2 rounded-full px-8 text-sm font-black text-accent-foreground transition-all hover:-translate-y-0.5"
+                      ? "inline-flex h-[3.25rem] items-center gap-2 rounded-full border border-primary-foreground/18 bg-primary-foreground/[0.08] px-6 text-sm font-black backdrop-blur-2xl transition-all hover:bg-primary-foreground/[0.13]"
+                      : "group inline-flex h-[3.25rem] items-center gap-2 rounded-full px-8 text-sm font-black text-accent-foreground transition-all hover:-translate-y-0.5"
                   }
                   style={c.variant === "ghost" ? undefined : { background: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}
                 >
